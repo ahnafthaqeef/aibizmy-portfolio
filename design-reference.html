@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Reference — Ahnaf Thaqeef Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── DESIGN TOKENS (mirrored from style.css) ── */
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #0f0f1a;
+      --surface:   #141428;
+      --surface2:  #1a1a35;
+      --border:    rgba(255,255,255,0.08);
+      --text:      #f0f0f8;
+      --text-muted:#8888aa;
+      --accent1:   #7c3aed;
+      --accent2:   #06b6d4;
+      --accent3:   #f59e0b;
+      --gradient:  linear-gradient(135deg,#7c3aed,#06b6d4);
+      --gradient-warm: linear-gradient(135deg,#f59e0b,#ef4444);
+      --font-main: 'Space Grotesk','Inter',sans-serif;
+      --font-body: 'Inter',sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-pill: 100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* ── REFERENCE LAYOUT ── */
+    .ref-page { max-width: 1100px; margin: 0 auto; }
+    .ref-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 3rem;
+    }
+    .ref-header h1 {
+      font-family: var(--font-main);
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ref-header p { color: var(--text-muted); margin-top: 0.4rem; font-size: 0.9rem; }
+
+    .ref-section { margin-bottom: 4rem; }
+    .ref-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .ref-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .ref-col { display: flex; flex-direction: column; gap: 0.5rem; }
+    .ref-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-top: 0.3rem;
+    }
+    .ref-code {
+      font-size: 0.68rem;
+      color: var(--accent2);
+      font-family: monospace;
+    }
+
+    /* ── TOKENS: COLORS ── */
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 120px;
+    }
+    .swatch-block {
+      width: 100%;
+      height: 60px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+    .swatch-name { font-size: 0.75rem; font-weight: 600; color: var(--text); }
+    .swatch-val  { font-size: 0.68rem; color: var(--text-muted); font-family: monospace; }
+
+    /* ── TOKENS: GRADIENTS ── */
+    .gradient-strip {
+      height: 60px;
+      border-radius: var(--radius-md);
+      width: 240px;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .type-row { display: flex; flex-direction: column; gap: 1.2rem; }
+    .type-sample { display: flex; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
+    .type-meta { min-width: 160px; flex-shrink: 0; }
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── SHARED COMPONENT STYLES (from style.css) ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.8rem;
+      background: var(--gradient); color: #fff;
+      font-weight: 600; font-size: 0.95rem;
+      border: none; border-radius: var(--radius-md); cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s; text-decoration: none;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      padding: 0.85rem 1.8rem;
+      background: transparent; color: var(--text);
+      font-weight: 600; font-size: 0.95rem;
+      border: 1px solid var(--border); border-radius: var(--radius-md); cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent1); transform: translateY(-2px); }
+    .nav-cta {
+      padding: 0.5rem 1.2rem;
+      background: var(--gradient); color: #fff;
+      font-weight: 600; font-size: 0.85rem;
+      border: none; border-radius: var(--radius-sm); cursor: pointer;
+    }
+    .tag {
+      display: inline-block; padding: 0.3rem 0.8rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); font-size: 0.8rem; color: var(--text-muted);
+      margin: 0.2rem;
+    }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); font-size: 0.82rem; color: var(--text-muted);
+    }
+    .badge-dot {
+      width: 8px; height: 8px; background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.6; transform:scale(1.3); }
+    }
+    .project-tag {
+      display: inline-flex; padding: 0.2rem 0.7rem;
+      background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4);
+      color: #a78bfa; border-radius: var(--radius-pill);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase; width: fit-content;
+    }
+    .blog-tag {
+      display: inline-flex; padding: 0.2rem 0.7rem;
+      background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3);
+      color: #67e8f9; border-radius: var(--radius-pill);
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em; width: fit-content;
+    }
+    .project-status {
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.25rem 0.7rem; border-radius: var(--radius-pill); width: fit-content;
+    }
+    .project-status.done    { background: rgba(34,197,94,0.15);  color: #4ade80; }
+    .project-status.active  { background: rgba(6,182,212,0.15);  color: #67e8f9; }
+    .project-status.on-hold { background: rgba(245,158,11,0.15); color: #fcd34d; }
+
+    /* CARDS */
+    .project-card {
+      padding: 2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      display: flex; flex-direction: column; gap: 0.8rem;
+      transition: border-color 0.3s, transform 0.3s; width: 320px;
+    }
+    .project-card:hover { border-color: rgba(124,58,237,0.5); transform: translateY(-6px); }
+    .project-card.featured {
+      background: linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.1));
+      border-color: rgba(124,58,237,0.4);
+    }
+    .project-card h3 { font-family: var(--font-main); font-size: 1.2rem; font-weight: 700; }
+    .project-card p  { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tech span {
+      padding: 0.2rem 0.6rem; background: var(--surface2);
+      border-radius: 4px; font-size: 0.75rem; color: var(--text-muted);
+    }
+    .blog-card {
+      padding: 2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      display: flex; flex-direction: column; gap: 0.8rem;
+      transition: border-color 0.3s, transform 0.3s; width: 300px;
+    }
+    .blog-card:hover { border-color: rgba(6,182,212,0.5); transform: translateY(-4px); }
+    .blog-card h3   { font-family: var(--font-main); font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+    .blog-card p    { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+    .blog-link { color: var(--accent2); text-decoration: none; font-size: 0.88rem; font-weight: 600; }
+
+    .testimonial-card {
+      padding: 2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      display: flex; flex-direction: column; gap: 1.2rem;
+      transition: border-color 0.3s, transform 0.3s; width: 320px;
+    }
+    .testimonial-card:hover { border-color: rgba(124,58,237,0.5); transform: translateY(-6px); }
+    .testimonial-card.featured {
+      background: linear-gradient(135deg,rgba(124,58,237,0.12),rgba(6,182,212,0.08));
+      border-color: rgba(124,58,237,0.35);
+    }
+    .stars { color: var(--accent3); font-size: 0.95rem; letter-spacing: 0.1em; }
+    .testimonial-quote { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; font-style: italic; }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 0.9rem;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+    }
+    .testimonial-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--gradient); display: flex; align-items: center;
+      justify-content: center; font-size: 0.75rem; font-weight: 700;
+      color: #fff; flex-shrink: 0; font-family: var(--font-main);
+    }
+    .testimonial-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .testimonial-role { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+    .about-card {
+      padding: 1.8rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      transition: border-color 0.3s, transform 0.3s; width: 280px;
+    }
+    .about-card:hover { border-color: var(--accent1); transform: translateY(-4px); }
+    .about-card.accent { background: var(--surface2); border-color: rgba(124,58,237,0.3); }
+    .card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .about-card h3 { font-family: var(--font-main); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+    .about-card ul { list-style: none; }
+    .about-card ul li {
+      color: var(--text-muted); font-size: 0.9rem;
+      padding: 0.35rem 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .about-card ul li:last-child { border-bottom: none; }
+    .about-card ul li::before { content: '→'; color: var(--accent2); font-size: 0.75rem; }
+
+    /* FORM */
+    .form-demo { display: flex; flex-direction: column; gap: 1.2rem; max-width: 400px; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .form-group input, .form-group textarea {
+      padding: 0.9rem 1.1rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-md);
+      color: var(--text); font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color 0.2s; resize: vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--accent1);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
+
+    /* STAT BLOCK */
+    .stat-block {
+      display: flex; align-items: center; gap: 2rem;
+      padding: 2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      width: fit-content;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      display: block; font-family: var(--font-main);
+      font-size: 2rem; font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.8rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .stat-divider { width: 1px; height: 40px; background: var(--border); }
+
+    /* CONTACT ITEM */
+    .contact-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 500;
+      padding: 1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s; width: fit-content;
+    }
+    .contact-item:hover { border-color: var(--accent1); transform: translateX(4px); }
+    .contact-icon { font-size: 1.2rem; }
+
+    /* DIVIDER */
+    .ref-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+  </style>
+</head>
+<body>
+<div class="ref-page">
+
+  <div class="ref-header">
+    <h1>Design Reference</h1>
+    <p>Ahnaf Thaqeef Portfolio — all tokens, components, and patterns in one place.</p>
+  </div>
+
+  <!-- ── 1. COLORS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">01 — Color Tokens</div>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0a0a0f;"></div>
+        <div class="swatch-name">--bg</div>
+        <div class="swatch-val">#0a0a0f</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0f0f1a;"></div>
+        <div class="swatch-name">--bg2</div>
+        <div class="swatch-val">#0f0f1a</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#141428;"></div>
+        <div class="swatch-name">--surface</div>
+        <div class="swatch-val">#141428</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1a1a35;"></div>
+        <div class="swatch-name">--surface2</div>
+        <div class="swatch-val">#1a1a35</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:rgba(255,255,255,0.08);"></div>
+        <div class="swatch-name">--border</div>
+        <div class="swatch-val">rgba(255,255,255,0.08)</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#f0f0f8;"></div>
+        <div class="swatch-name">--text</div>
+        <div class="swatch-val">#f0f0f8</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#8888aa;"></div>
+        <div class="swatch-name">--text-muted</div>
+        <div class="swatch-val">#8888aa</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#7c3aed;"></div>
+        <div class="swatch-name">--accent1</div>
+        <div class="swatch-val">#7c3aed · Purple</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#06b6d4;"></div>
+        <div class="swatch-name">--accent2</div>
+        <div class="swatch-val">#06b6d4 · Cyan</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#f59e0b;"></div>
+        <div class="swatch-name">--accent3</div>
+        <div class="swatch-val">#f59e0b · Amber</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. GRADIENTS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">02 — Gradients</div>
+    <div class="ref-row">
+      <div class="ref-col">
+        <div class="gradient-strip" style="background:linear-gradient(135deg,#7c3aed,#06b6d4);"></div>
+        <div class="swatch-name">--gradient (primary)</div>
+        <div class="swatch-val">linear-gradient(135deg, #7c3aed → #06b6d4)</div>
+        <div class="ref-label">Used on: buttons, logo, stat numbers, avatars, text highlights</div>
+      </div>
+      <div class="ref-col">
+        <div class="gradient-strip" style="background:linear-gradient(135deg,#f59e0b,#ef4444);"></div>
+        <div class="swatch-name">--gradient-warm</div>
+        <div class="swatch-val">linear-gradient(135deg, #f59e0b → #ef4444)</div>
+        <div class="ref-label">Reserved — accent/alert use</div>
+      </div>
+      <div class="ref-col">
+        <div style="font-size:1.8rem;font-weight:900;font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,#7c3aed,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          Gradient Text
+        </div>
+        <div class="swatch-name">Gradient Text</div>
+        <div class="swatch-val">.gradient-text</div>
+        <div class="ref-label">Used on: section headlines, logo, key terms</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. TYPOGRAPHY ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">03 — Typography</div>
+    <div class="type-row">
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Hero Title</div>
+          <div class="ref-code">Space Grotesk 900 · clamp(2.8rem,7vw,5.5rem) · lh 1.05</div>
+        </div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:900;line-height:1.05;letter-spacing:-0.02em;">
+          Building <span class="gradient-text">AI</span>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Section Title</div>
+          <div class="ref-code">Space Grotesk 700 · clamp(2rem,4vw,3rem) · lh 1.15</div>
+        </div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:700;line-height:1.15;">
+          What I've <span class="gradient-text">Built</span>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Card Heading</div>
+          <div class="ref-code">Space Grotesk 700 · 1.2rem</div>
+        </div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;">Voice Agent for Business</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Body / Hero Sub</div>
+          <div class="ref-code">Inter 400 · clamp(1rem,2vw,1.2rem) · lh 1.7 · color: --text-muted</div>
+        </div>
+        <div style="font-size:1.1rem;color:var(--text-muted);line-height:1.7;max-width:480px;">
+          I design and build intelligent tools, voice agents, and automation systems that save time and generate results.
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Section Sub</div>
+          <div class="ref-code">Inter 400 · 1.1rem · color: --text-muted</div>
+        </div>
+        <div style="font-size:1.1rem;color:var(--text-muted);">A selection of AI tools and systems I've designed and shipped.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Section Label</div>
+          <div class="ref-code">Inter 600 · 0.75rem · tracking 0.2em · uppercase · --accent2</div>
+        </div>
+        <div class="section-label" style="margin:0;">Projects</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          <div class="ref-label">Card Body</div>
+          <div class="ref-code">Inter 400 · 0.9–0.95rem · lh 1.6 · --text-muted</div>
+        </div>
+        <div style="font-size:0.92rem;color:var(--text-muted);line-height:1.6;max-width:400px;">
+          AI-powered voice agent built on Retell AI — handles inbound calls with natural conversation flow.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. BUTTONS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">04 — Buttons</div>
+    <div class="ref-row" style="align-items:center;gap:1.5rem;">
+      <div class="ref-col">
+        <button class="btn-primary">See My Work</button>
+        <div class="swatch-name">.btn-primary</div>
+        <div class="ref-code">gradient bg · white · 0.85rem pad · r-8</div>
+        <div class="ref-label">Primary action, hero CTAs, form submit</div>
+      </div>
+      <div class="ref-col">
+        <button class="btn-ghost">Get In Touch</button>
+        <div class="swatch-name">.btn-ghost</div>
+        <div class="ref-code">transparent · border --border · hover: border --accent1</div>
+        <div class="ref-label">Secondary action, paired with btn-primary</div>
+      </div>
+      <div class="ref-col">
+        <button class="nav-cta">Let's Talk</button>
+        <div class="swatch-name">.nav-cta</div>
+        <div class="ref-code">gradient bg · 0.5rem pad · r-6 · smaller</div>
+        <div class="ref-label">Nav bar only</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. BADGES & TAGS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">05 — Badges &amp; Tags</div>
+    <div class="ref-row">
+      <div class="ref-col">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Available for projects
+        </div>
+        <div class="swatch-name">.hero-badge</div>
+        <div class="ref-label">Hero section status indicator</div>
+      </div>
+      <div class="ref-col">
+        <span class="project-tag">Voice AI</span>
+        <div class="swatch-name">.project-tag</div>
+        <div class="ref-label">Project category · purple tint</div>
+      </div>
+      <div class="ref-col">
+        <span class="blog-tag">AI Strategy</span>
+        <div class="swatch-name">.blog-tag</div>
+        <div class="ref-label">Blog/content category · cyan tint</div>
+      </div>
+      <div class="ref-col">
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <span class="project-status done">Done</span>
+          <span class="project-status active">In Progress</span>
+          <span class="project-status on-hold">On Hold</span>
+        </div>
+        <div class="swatch-name">.project-status</div>
+        <div class="ref-label">done · active · on-hold</div>
+      </div>
+      <div class="ref-col">
+        <div>
+          <span class="tag">Claude API</span>
+          <span class="tag">Python</span>
+          <span class="tag">ElevenLabs</span>
+        </div>
+        <div class="swatch-name">.tag</div>
+        <div class="ref-label">Tech stack pills · surface2 bg</div>
+      </div>
+      <div class="ref-col">
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;max-width:220px;">
+          <span style="padding:0.2rem 0.6rem;background:var(--surface2);border-radius:4px;font-size:0.75rem;color:var(--text-muted);">Retell AI</span>
+          <span style="padding:0.2rem 0.6rem;background:var(--surface2);border-radius:4px;font-size:0.75rem;color:var(--text-muted);">Python</span>
+        </div>
+        <div class="swatch-name">.project-tech span</div>
+        <div class="ref-label">Project tech chips · r-4 · smaller than .tag</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. CARDS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">06 — Cards</div>
+
+    <div style="margin-bottom:0.5rem;font-size:0.8rem;color:var(--text-muted);">Project Cards</div>
+    <div class="ref-row" style="margin-bottom:2rem;">
+      <div>
+        <div class="project-card">
+          <span class="project-tag">Voice AI</span>
+          <h3>Voice Agent for Business</h3>
+          <p>AI-powered voice agent — handles inbound/outbound business calls with natural conversation flow.</p>
+          <div class="project-tech"><span>Retell AI</span><span>ElevenLabs</span><span>Python</span></div>
+          <span class="project-status on-hold">On Hold</span>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.project-card — standard</div>
+      </div>
+      <div>
+        <div class="project-card featured">
+          <span class="project-tag">Voice AI</span>
+          <h3>Voice Agent for Business</h3>
+          <p>AI-powered voice agent — handles inbound/outbound business calls with natural conversation flow.</p>
+          <div class="project-tech"><span>Retell AI</span><span>ElevenLabs</span><span>Python</span></div>
+          <span class="project-status done">Done</span>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.project-card.featured — gradient bg, grid-col span 2</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:0.5rem;font-size:0.8rem;color:var(--text-muted);">Blog Cards</div>
+    <div class="ref-row" style="margin-bottom:2rem;">
+      <div>
+        <div class="blog-card">
+          <span class="blog-tag">AI Strategy</span>
+          <h3>30 Problems Solved with AI in 30 Days</h3>
+          <p>A challenge log documenting real business problems tackled with AI tools — one per day.</p>
+          <a href="#" class="blog-link">Read More &#8594;</a>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.blog-card — cyan border on hover</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:0.5rem;font-size:0.8rem;color:var(--text-muted);">Testimonial Cards</div>
+    <div class="ref-row" style="margin-bottom:2rem;">
+      <div>
+        <div class="testimonial-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Ahnaf built us a voice agent in days, not months. The ROI was immediate."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FH</div>
+            <div>
+              <div class="testimonial-name">Fariz Harun</div>
+              <div class="testimonial-role">Operations Director, SMB Malaysia</div>
+            </div>
+          </div>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.testimonial-card — standard</div>
+      </div>
+      <div>
+        <div class="testimonial-card featured">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"He didn't just build what we asked — he built what we actually needed."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SL</div>
+            <div>
+              <div class="testimonial-name">Sarah Lim</div>
+              <div class="testimonial-role">Founder, E-commerce Brand</div>
+            </div>
+          </div>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.testimonial-card.featured — gradient border</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:0.5rem;font-size:0.8rem;color:var(--text-muted);">About Cards</div>
+    <div class="ref-row">
+      <div>
+        <div class="about-card">
+          <div class="card-icon">&#127775;</div>
+          <h3>What I do</h3>
+          <ul>
+            <li>Build AI voice agents for business</li>
+            <li>Design automation workflows</li>
+            <li>Create AI-powered web tools</li>
+          </ul>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.about-card — standard</div>
+      </div>
+      <div>
+        <div class="about-card accent">
+          <div class="card-icon">&#9889;</div>
+          <h3>My edge</h3>
+          <ul>
+            <li>Business-first thinking</li>
+            <li>Ship fast, iterate faster</li>
+            <li>Full-stack AI — from prompt to product</li>
+          </ul>
+        </div>
+        <div class="ref-label" style="margin-top:0.5rem;">.about-card.accent — surface2, purple border</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 7. STAT BLOCK ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">07 — Stat Block</div>
+    <div class="stat-block">
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">AI Projects</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Integrations Built</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Business-Focused</span>
+      </div>
+    </div>
+    <div class="ref-label" style="margin-top:0.8rem;">.hero-stats — gradient number, muted label, 1px divider</div>
+  </div>
+
+  <!-- ── 8. FORM ELEMENTS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">08 — Form Elements</div>
+    <div class="form-demo">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Your name" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label>What are you working on?</label>
+        <textarea rows="3" placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+    </div>
+    <div class="ref-label" style="margin-top:0.8rem;">surface bg · border --border · focus: border --accent1 · label: uppercase 0.85rem muted</div>
+  </div>
+
+  <!-- ── 9. CONTACT ITEM ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">09 — Contact Item</div>
+    <div style="display:flex;flex-direction:column;gap:0.8rem;">
+      <a href="#" class="contact-item">
+        <span class="contact-icon">&#9993;</span>
+        hello@ahnafthaqeef.com
+      </a>
+      <a href="#" class="contact-item">
+        <span class="contact-icon">&#128101;</span>
+        LinkedIn
+      </a>
+    </div>
+    <div class="ref-label" style="margin-top:0.8rem;">.contact-item — surface card · hover: border --accent1 + translateX(4px)</div>
+  </div>
+
+  <!-- ── 10. SPACING & RADIUS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">10 — Spacing &amp; Radius</div>
+    <div class="ref-row">
+      <div class="ref-col" style="gap:1rem;">
+        <div style="font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;">Section Padding</div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Top-level sections: <code style="color:var(--accent2);">padding: 8rem 0</code></div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Container max-width: <code style="color:var(--accent2);">1200px · padding: 0 2rem</code></div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Card gap: <code style="color:var(--accent2);">1.5rem</code></div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Card padding: <code style="color:var(--accent2);">2rem</code></div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Grid gap (about): <code style="color:var(--accent2);">4rem</code></div>
+      </div>
+      <div class="ref-col" style="gap:1rem;">
+        <div style="font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;">Border Radius</div>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="width:60px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;"></div>
+            <span style="font-size:0.82rem;color:var(--text-muted);">r-6 — nav-cta, small elements</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="width:60px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;"></div>
+            <span style="font-size:0.82rem;color:var(--text-muted);">r-8 — buttons, inputs</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="width:60px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:16px;"></div>
+            <span style="font-size:0.82rem;color:var(--text-muted);">r-16 — all cards</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="width:60px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;"></div>
+            <span style="font-size:0.82rem;color:var(--text-muted);">r-pill — tags, badges, status</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 11. SECTION BACKGROUNDS ── -->
+  <div class="ref-section">
+    <div class="ref-section-title">11 — Section Background Pattern</div>
+    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="width:80px;height:32px;background:#0a0a0f;border:1px solid var(--border);border-radius:6px;"></div>
+        <span style="font-size:0.85rem;color:var(--text-muted);">--bg (#0a0a0f) — Hero, Projects, Contact</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="width:80px;height:32px;background:#0f0f1a;border:1px solid var(--border);border-radius:6px;"></div>
+        <span style="font-size:0.85rem;color:var(--text-muted);">--bg2 (#0f0f1a) — About, Blog, Testimonials</span>
+      </div>
+      <div style="margin-top:0.4rem;font-size:0.82rem;color:var(--text-muted);">Sections alternate --bg / --bg2 to create visual separation without a hard border.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

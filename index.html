@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahnaf Thaqeef — AI Builder</title>
+  <meta name="description" content="Ahnaf Thaqeef — AI for Business in Malaysia. Building intelligent tools, voice agents, and automation systems." />
+  <meta name="og:title" content="Ahnaf Thaqeef — AI Builder" />
+  <meta name="og:description" content="AI for Business in Malaysia. Intelligent tools, voice agents, and automation systems." />
+  <meta name="og:url" content="https://aibizmy.com" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">AT</div>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav-about">About</a></li>
+      <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="#blog" data-i18n="nav-content">Content</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="my">BM</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+    <button class="nav-cta" id="navCta" data-i18n="nav-cta">Let's Talk</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu">&#10005;</button>
+    <ul>
+      <li><a href="#about" class="mob-link" data-i18n="nav-about">About</a></li>
+      <li><a href="#projects" class="mob-link" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="#blog" class="mob-link" data-i18n="nav-content">Content</a></li>
+      <li><a href="#contact" class="mob-link" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher-mob">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="my">BM</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+      <canvas id="particles"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span data-i18n="hero-badge">Available for projects</span>
+      </div>
+      <h1 class="hero-title" data-i18n-html="hero-title">
+        Building <span class="gradient-text">AI</span><br/>
+        that works for<br/>
+        <span class="gradient-text">your business</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero-sub">
+        I'm Ahnaf Thaqeef — I design and build intelligent tools, voice agents, and automation systems that save time and generate results.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" id="heroBtnWork" data-i18n="hero-btn-1">See My Work</button>
+        <button class="btn-ghost" id="heroBtnContact" data-i18n="hero-btn-2">Get In Touch</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">10+</span>
+          <span class="stat-label" data-i18n="stat-1">AI Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">5+</span>
+          <span class="stat-label" data-i18n="stat-2">Integrations Built</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label" data-i18n="stat-3">Business-Focused</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span data-i18n="scroll">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label" data-i18n="about-label">About</div>
+      <div class="about-grid">
+        <div class="about-left">
+          <h2 class="section-title" data-i18n-html="about-title">I turn ideas into<br/><span class="gradient-text">working AI systems</span></h2>
+          <p data-i18n-html="about-p1">I'm obsessed with one question: <strong>how can AI make businesses meaningfully better?</strong></p>
+          <p data-i18n="about-p2">From voice agents that handle customer calls to tools that write content, generate resumes, and automate workflows — I build end-to-end AI products with a focus on real-world outcomes.</p>
+          <p data-i18n="about-p3">I work at the intersection of product thinking and technical execution. If there's a problem worth solving, I'll figure out the right AI approach for it.</p>
+          <div class="tech-stack">
+            <span class="tag">Claude API</span>
+            <span class="tag">ElevenLabs</span>
+            <span class="tag">Retell AI</span>
+            <span class="tag">Notion</span>
+            <span class="tag">Python</span>
+            <span class="tag">Cloudflare</span>
+            <span class="tag">Workflow Automation</span>
+            <span class="tag">Prompt Engineering</span>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="about-card">
+            <div class="card-icon">&#127775;</div>
+            <h3 data-i18n="card1-title">What I do</h3>
+            <ul>
+              <li data-i18n="card1-li1">Build AI voice agents for business</li>
+              <li data-i18n="card1-li2">Design automation workflows</li>
+              <li data-i18n="card1-li3">Create AI-powered web tools</li>
+              <li data-i18n="card1-li4">Integrate AI into existing systems</li>
+            </ul>
+          </div>
+          <div class="about-card accent">
+            <div class="card-icon">&#9889;</div>
+            <h3 data-i18n="card2-title">My edge</h3>
+            <ul>
+              <li data-i18n="card2-li1">Business-first thinking</li>
+              <li data-i18n="card2-li2">Ship fast, iterate faster</li>
+              <li data-i18n="card2-li3">Full-stack AI — from prompt to product</li>
+              <li data-i18n="card2-li4">Documenting everything that works</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label" data-i18n="projects-label">Projects</div>
+      <h2 class="section-title" data-i18n-html="projects-title">What I've <span class="gradient-text">Built</span></h2>
+      <p class="section-sub" data-i18n="projects-sub">A selection of AI tools and systems I've designed and shipped.</p>
+      <div class="projects-grid">
+
+        <div class="project-card featured">
+          <div class="project-tag" data-i18n="p1-tag">Voice AI</div>
+          <h3 data-i18n="p1-title">Voice Agent for Business</h3>
+          <p data-i18n="p1-desc">AI-powered voice agent built on Retell AI and ElevenLabs — handles inbound/outbound business calls with natural conversation flow and CRM integration.</p>
+          <div class="project-tech">
+            <span>Retell AI</span><span>ElevenLabs</span><span>Python</span>
+          </div>
+          <div class="project-status on-hold" data-i18n="p1-status">On Hold</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tag" data-i18n="p2-tag">Voice AI</div>
+          <h3 data-i18n="p2-title">ElevenLabs Voice Agent</h3>
+          <p data-i18n="p2-desc">Standalone voice agent built directly in ElevenLabs — production-ready conversational AI with custom voice cloning.</p>
+          <div class="project-tech">
+            <span>ElevenLabs</span><span>Voice Cloning</span>
+          </div>
+          <div class="project-status done" data-i18n="p2-status">Done</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tag" data-i18n="p3-tag">Chatbot</div>
+          <h3 data-i18n="p3-title">Chatbot WS</h3>
+          <p data-i18n="p3-desc">Custom chatbot solution for business use — context-aware, trainable on company data, and embeddable in any website.</p>
+          <div class="project-tech">
+            <span>Claude API</span><span>RAG</span><span>JavaScript</span>
+          </div>
+          <div class="project-status active" data-i18n="p3-status">In Progress</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tag" data-i18n="p4-tag">AI Tool</div>
+          <h3 data-i18n="p4-title">AI Proposal Generator</h3>
+          <p data-i18n="p4-desc">AI-powered business proposal generator — creates tailored, professional proposals fast so you can close deals, not write documents.</p>
+          <div class="project-tech">
+            <span>Claude API</span><span>Python</span><span>PDF Gen</span>
+          </div>
+          <div class="project-status active" data-i18n="p4-status">In Progress</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tag" data-i18n="p5-tag">Content</div>
+          <h3 data-i18n="p5-title">Content Marketing Tools</h3>
+          <p data-i18n="p5-desc">Suite of AI tools for content creation — from ideation to drafting to scheduling, built for marketing teams.</p>
+          <div class="project-tech">
+            <span>Claude API</span><span>Notion</span><span>Automation</span>
+          </div>
+          <div class="project-status active" data-i18n="p5-status">In Progress</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tag" data-i18n="p6-tag">Workflow</div>
+          <h3 data-i18n="p6-title">Claude Agent Workflow Builder</h3>
+          <p data-i18n="p6-desc">Visual system for designing AI agent workflows — the WAT framework (Workflows, Agents, Tools) made tangible.</p>
+          <div class="project-tech">
+            <span>Claude Code</span><span>Python</span><span>Markdown</span>
+          </div>
+          <div class="project-status active" data-i18n="p6-status">In Progress</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG / CONTENT -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-label" data-i18n="blog-label">Content</div>
+      <h2 class="section-title" data-i18n-html="blog-title">Ideas &amp; <span class="gradient-text">Insights</span></h2>
+      <p class="section-sub" data-i18n="blog-sub">Documenting what works in AI for business — honest takes, no fluff.</p>
+      <div class="blog-grid">
+
+        <div class="blog-card">
+          <div class="blog-tag" data-i18n="b1-tag">AI Strategy</div>
+          <h3 data-i18n="b1-title">30 Problems Solved with AI in 30 Days</h3>
+          <p data-i18n="b1-desc">A challenge log documenting real business problems tackled with AI tools — one per day, with what worked and what didn't.</p>
+          <a href="#" class="blog-link" data-i18n="b1-link">Read More &#8594;</a>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-tag" data-i18n="b2-tag">Voice AI</div>
+          <h3 data-i18n="b2-title">Why Voice Agents Are the Next Frontier for SMBs</h3>
+          <p data-i18n="b2-desc">Most businesses still use humans for calls that could be handled by AI. Here's what's actually possible today.</p>
+          <a href="#" class="blog-link" data-i18n="b2-link">Read More &#8594;</a>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-tag" data-i18n="b3-tag">Workflow</div>
+          <h3 data-i18n="b3-title">The WAT Framework: How I Structure Every AI Project</h3>
+          <p data-i18n="b3-desc">Workflows, Agents, Tools — a simple mental model for building AI systems that actually ship and scale.</p>
+          <a href="#" class="blog-link" data-i18n="b3-link">Read More &#8594;</a>
+        </div>
+
+      </div>
+      <div class="blog-cta">
+        <p data-i18n="blog-cta-text">More content coming. Follow along.</p>
+        <button class="btn-primary" id="blogCtaBtn" data-i18n="blog-cta-btn">Get Notified</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-label" data-i18n="testimonials-label">What People Say</div>
+      <h2 class="section-title" data-i18n-html="testimonials-title">Results that <span class="gradient-text">speak for themselves</span></h2>
+      <p class="section-sub" data-i18n="testimonials-sub">From clients and collaborators who've seen the work firsthand.</p>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote" data-i18n="t1-quote">"Ahnaf built us a voice agent in days, not months. It handles 60% of our inbound calls now — the ROI was immediate. I didn't think it was possible this fast."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FH</div>
+            <div>
+              <div class="testimonial-name">Fariz Harun</div>
+              <div class="testimonial-role" data-i18n="t1-role">Operations Director, SMB Malaysia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card featured">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote" data-i18n="t2-quote">"I've worked with a lot of developers, but Ahnaf thinks like a product person. He didn't just build what we asked — he built what we actually needed. The chatbot he delivered exceeded every expectation."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SL</div>
+            <div>
+              <div class="testimonial-name">Sarah Lim</div>
+              <div class="testimonial-role" data-i18n="t2-role">Founder, E-commerce Brand</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote" data-i18n="t3-quote">"The AI automation workflow he designed saves our team 20+ hours a week. Genuinely shocked by the quality and speed of delivery. Will work with him again."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DW</div>
+            <div>
+              <div class="testimonial-name">Daniel Wong</div>
+              <div class="testimonial-role" data-i18n="t3-role">Marketing Lead, Tech Startup</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label" data-i18n="contact-label">Contact</div>
+      <div class="contact-grid">
+        <div class="contact-left">
+          <h2 class="section-title" data-i18n-html="contact-title">Let's build<br/><span class="gradient-text">something real</span></h2>
+          <p data-i18n="contact-p">Have a business problem you think AI can solve? Or just want to talk about what's possible? I'm interested.</p>
+          <div class="contact-links">
+            <a href="mailto:hello@aibizmy.com" class="contact-item">
+              <span class="contact-icon">&#9993;</span>
+              hello@aibizmy.com
+            </a>
+            <a href="https://linkedin.com/in/ahnafthaqeef" target="_blank" class="contact-item">
+              <span class="contact-icon">&#128101;</span>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name" data-i18n="form-name-label">Name</label>
+              <input type="text" id="name" name="name" data-i18n-ph="form-name-placeholder" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="form-email-label">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message" data-i18n="form-msg-label">What are you working on?</label>
+              <textarea id="message" name="message" rows="4" data-i18n-ph="form-msg-placeholder" placeholder="Tell me about your project or problem..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary full-width" data-i18n="form-submit">Send Message</button>
+            <div class="form-success" id="formSuccess" data-i18n="form-success">Message sent! I'll be in touch soon.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Ahnaf Thaqeef</div>
+        <p class="footer-sub" data-i18n="footer-sub">Building AI for Business</p>
+        <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 Ahnaf Thaqeef. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
