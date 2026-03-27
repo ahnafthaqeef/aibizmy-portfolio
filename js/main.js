@@ -51,7 +51,7 @@ const translations = {
     'p8-tag': 'Web App', 'p8-title': 'Habit Tracker',
     'p8-desc': 'Daily habit tracking with streaks, progress analytics, and smart reminders to keep you consistent.',
     'p8-status': 'Live',
-    'p9-tag': 'Web App', 'p9-title': 'EventsAir Clone',
+    'p9-tag': 'Web App', 'p9-title': 'AcaraHQ',
     'p9-desc': 'Event management platform — attendee registration, agenda builder, and check-in workflow for end-to-end event ops.',
     'p9-status': 'Live',
     'p10-tag': 'Web App', 'p10-title': 'Property Tracker',
@@ -140,7 +140,7 @@ const translations = {
     'p8-tag': 'Aplikasi Web', 'p8-title': 'Penjejak Tabiat',
     'p8-desc': 'Penjejakan tabiat harian dengan streak, analitik kemajuan, dan peringatan pintar untuk memastikan anda konsisten.',
     'p8-status': 'Langsung',
-    'p9-tag': 'Aplikasi Web', 'p9-title': 'Klon EventsAir',
+    'p9-tag': 'Aplikasi Web', 'p9-title': 'AcaraHQ',
     'p9-desc': 'Platform pengurusan acara — pendaftaran peserta, pembina agenda, dan aliran kerja daftar masuk untuk ops acara hujung-ke-hujung.',
     'p9-status': 'Langsung',
     'p10-tag': 'Aplikasi Web', 'p10-title': 'Penjejak Hartanah',
@@ -229,7 +229,7 @@ const translations = {
     'p8-tag': 'Web 应用', 'p8-title': '习惯追踪器',
     'p8-desc': '每日习惯追踪，含连续记录、进度分析和智能提醒，帮你保持一致性。',
     'p8-status': '已上线',
-    'p9-tag': 'Web 应用', 'p9-title': 'EventsAir 克隆',
+    'p9-tag': 'Web 应用', 'p9-title': 'AcaraHQ',
     'p9-desc': '活动管理平台——参与者注册、议程构建器和签到工作流，覆盖活动全流程。',
     'p9-status': '已上线',
     'p10-tag': 'Web 应用', 'p10-title': '房产追踪器',
@@ -444,17 +444,46 @@ const formSuccess = document.getElementById('formSuccess');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = form.querySelector('button[type="submit"]');
+  const lang = localStorage.getItem('lang') || 'en';
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  // Simulate send (replace with Formspree/EmailJS endpoint)
-  await new Promise(r => setTimeout(r, 1200));
+  const formData = {
+    name: form.querySelector('#name').value,
+    email: form.querySelector('#email').value,
+    message: form.querySelector('#message').value,
+  };
 
-  form.reset();
-  btn.textContent = translations[localStorage.getItem('lang') || 'en']['form-submit'];
+  try {
+    // SETUP: Create a free account at formspree.io, create a form for hello@aibizmy.com,
+    // then replace YOUR_FORMSPREE_ID with your form ID (e.g., 'xyzabc12')
+    const res = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      form.reset();
+      formSuccess.style.display = 'block';
+      formSuccess.style.color = '';  // reset to default (success)
+      formSuccess.textContent = translations[lang]['form-success'];
+      setTimeout(() => { formSuccess.style.display = 'none'; }, 5000);
+    } else {
+      formSuccess.style.display = 'block';
+      formSuccess.style.color = '#ff6b6b';
+      formSuccess.textContent = lang === 'my' ? 'Ralat. Cuba lagi atau emel terus ke hello@aibizmy.com.' : 'Error sending. Please email hello@aibizmy.com directly.';
+      setTimeout(() => { formSuccess.style.display = 'none'; }, 6000);
+    }
+  } catch {
+    formSuccess.style.display = 'block';
+    formSuccess.style.color = '#ff6b6b';
+    formSuccess.textContent = lang === 'my' ? 'Tiada sambungan. Cuba lagi kemudian.' : 'Network error. Please try again later.';
+    setTimeout(() => { formSuccess.style.display = 'none'; }, 6000);
+  }
+
+  btn.textContent = translations[lang]['form-submit'];
   btn.disabled = false;
-  formSuccess.style.display = 'block';
-  setTimeout(() => { formSuccess.style.display = 'none'; }, 4000);
 });
 
 // ---- SMOOTH ACTIVE NAV HIGHLIGHT ----
