@@ -61,6 +61,8 @@
       <div class="hero-badge">
         <span class="badge-dot"></span>
         <span data-i18n="hero-badge">Available for projects</span>
+        <span class="badge-sep">·</span>
+        <span class="badge-location">🇲🇾 Malaysia</span>
       </div>
       <h1 class="hero-title" data-i18n-html="hero-title">
         Building <span class="gradient-text">AI</span><br/>
@@ -76,13 +78,13 @@
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <span class="stat-num">10+</span>
+          <span class="stat-num">16+</span>
           <span class="stat-label" data-i18n="stat-1">AI Projects</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-          <span class="stat-num">5+</span>
-          <span class="stat-label" data-i18n="stat-2">Integrations Built</span>
+          <span class="stat-num">6</span>
+          <span class="stat-label" data-i18n="stat-2">Live Apps</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
@@ -108,13 +110,13 @@
           <p data-i18n="about-p2">From voice agents that handle customer calls to tools that write content, generate resumes, and automate workflows — I build end-to-end AI products with a focus on real-world outcomes.</p>
           <p data-i18n="about-p3">I work at the intersection of product thinking and technical execution. If there's a problem worth solving, I'll figure out the right AI approach for it.</p>
           <div class="tech-stack">
-            <span class="tag">Claude API</span>
-            <span class="tag">ElevenLabs</span>
-            <span class="tag">Retell AI</span>
-            <span class="tag">Notion</span>
+            <span class="tag">n8n Automation</span>
+            <span class="tag">RAG / Vector DB</span>
+            <span class="tag">Multi-LLM (Claude, Groq, OpenAI)</span>
+            <span class="tag">Next.js + TypeScript</span>
             <span class="tag">Python</span>
-            <span class="tag">Cloudflare</span>
-            <span class="tag">Workflow Automation</span>
+            <span class="tag">AWS Bedrock</span>
+            <span class="tag">Supabase</span>
             <span class="tag">Prompt Engineering</span>
           </div>
         </div>
@@ -261,6 +263,28 @@
           <a href="https://property.aibizmy.com" target="_blank" rel="noopener" class="project-link" data-i18n="launch-app">Launch App →</a>
         </div>
 
+        <div class="project-card featured">
+          <div class="project-tag">Finance AI</div>
+          <h3>FinAI Intel</h3>
+          <p>3-in-1 finance AI app — stock sentiment analysis, economic indicator tracking, and market brief generator. Built as a portfolio piece for senior AI innovation roles.</p>
+          <div class="project-tech">
+            <span>Next.js</span><span>Supabase</span><span>Groq AI</span>
+          </div>
+          <div class="project-status live">Live</div>
+          <a href="https://finai.aibizmy.com" target="_blank" rel="noopener" class="project-link">Launch App →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tag">Education</div>
+          <h3>Rancangan Pengajian Harian</h3>
+          <p>AI-powered daily lesson plan generator for Malaysian educators — produces structured rancangan pengajian harian in BM, aligned to KSSR/KSSM formats.</p>
+          <div class="project-tech">
+            <span>Next.js</span><span>Supabase</span><span>Claude API</span>
+          </div>
+          <div class="project-status live">Live</div>
+          <a href="https://pengajian.aibizmy.com" target="_blank" rel="noopener" class="project-link">Launch App →</a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -296,8 +320,12 @@
 
       </div>
       <div class="blog-cta">
-        <p data-i18n="blog-cta-text">More content coming. Follow along.</p>
-        <button class="btn-primary" id="blogCtaBtn" data-i18n="blog-cta-btn">Get Notified</button>
+        <p data-i18n="blog-cta-text">More content coming. Follow along for daily AI breakdowns.</p>
+        <div class="blog-cta-actions">
+          <button class="btn-primary" id="blogCtaBtn" data-i18n="blog-cta-btn">Get Notified</button>
+          <a href="https://tiktok.com/@ahnafthaqeef" target="_blank" rel="noopener" class="btn-ghost blog-social-btn">TikTok ↗</a>
+          <a href="https://linkedin.com/in/ahnafthaqeef" target="_blank" rel="noopener" class="btn-ghost blog-social-btn">LinkedIn ↗</a>
+        </div>
       </div>
     </div>
   </section>
@@ -360,12 +388,20 @@
           <p data-i18n="contact-p">Have a business problem you think AI can solve? Or just want to talk about what's possible? I'm interested.</p>
           <div class="contact-links">
             <a href="mailto:hello@aibizmy.com" class="contact-item">
-              <span class="contact-icon">&#9993;</span>
+              <span class="contact-icon">✉</span>
               hello@aibizmy.com
             </a>
-            <a href="https://linkedin.com/in/ahnafthaqeef" target="_blank" class="contact-item">
-              <span class="contact-icon">&#128101;</span>
-              LinkedIn
+            <a href="https://linkedin.com/in/ahnafthaqeef" target="_blank" rel="noopener" class="contact-item">
+              <span class="contact-icon">💼</span>
+              LinkedIn — Ahnaf Thaqeef
+            </a>
+            <a href="https://tiktok.com/@ahnafthaqeef" target="_blank" rel="noopener" class="contact-item">
+              <span class="contact-icon">🎵</span>
+              TikTok — @ahnafthaqeef
+            </a>
+            <a href="https://aibizmy.com" target="_blank" rel="noopener" class="contact-item">
+              <span class="contact-icon">🌐</span>
+              aibizmy.com — All Apps
             </a>
           </div>
         </div>
@@ -395,9 +431,41 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="footer-logo">Ahnaf Thaqeef</div>
-        <p class="footer-sub" data-i18n="footer-sub">Building AI for Business</p>
+        <div class="footer-brand">
+          <div class="footer-logo">Ahnaf Thaqeef</div>
+          <p class="footer-sub" data-i18n="footer-sub">Building AI for Business</p>
+          <div class="footer-social">
+            <a href="https://linkedin.com/in/ahnafthaqeef" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://tiktok.com/@ahnafthaqeef" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+            <a href="mailto:hello@aibizmy.com" aria-label="Email">✉</a>
+            <a href="https://aibizmy.com" target="_blank" rel="noopener" aria-label="Portfolio">⬡</a>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div class="footer-nav-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#blog">Content</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <h4>Live Apps</h4>
+            <ul>
+              <li><a href="https://resume.aibizmy.com" target="_blank" rel="noopener">Resume Builder</a></li>
+              <li><a href="https://habits.aibizmy.com" target="_blank" rel="noopener">Habit Tracker</a></li>
+              <li><a href="https://events.aibizmy.com" target="_blank" rel="noopener">AcaraHQ</a></li>
+              <li><a href="https://finai.aibizmy.com" target="_blank" rel="noopener">FinAI Intel</a></li>
+              <li><a href="https://pengajian.aibizmy.com" target="_blank" rel="noopener">Rancangan Pengajian</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
         <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 Ahnaf Thaqeef. All rights reserved.</p>
+        <p class="footer-made">Made in <span>🇲🇾 Malaysia</span> · Powered by <span>AI</span></p>
       </div>
     </div>
   </footer>
