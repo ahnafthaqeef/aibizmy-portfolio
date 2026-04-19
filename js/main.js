@@ -455,11 +455,9 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    // SETUP: Create a free account at formspree.io, create a form for hello@aibizmy.com,
-    // then replace YOUR_FORMSPREE_ID with your form ID (e.g., 'xyzabc12')
-    const res = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+    const res = await fetch('/api/contact', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
 
