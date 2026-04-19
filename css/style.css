@@ -1075,6 +1075,12 @@ footer {
   border-top: 1px solid var(--border);
   background: var(--bg2);
   position: relative;
+  text-align: left;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 footer::before {
   content: '';
@@ -1095,6 +1101,7 @@ footer::before {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  align-items: flex-start;
 }
 .footer-logo {
   font-family: var(--font-main);
