@@ -152,14 +152,11 @@
       <div class="section-label" data-i18n="projects-label">Projects</div>
       <h2 class="section-title" data-i18n-html="projects-title">What I've <span class="gradient-text">Built</span></h2>
       <p class="section-sub" data-i18n="projects-sub">A selection of AI tools and systems I've designed and shipped.</p>
-      <div class="filter-tabs" role="tablist" aria-label="Filter projects by category">
-        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" data-i18n="filter-all">All</button>
-        <button class="filter-tab" data-filter="ai-automation" role="tab" aria-selected="false" data-i18n="filter-ai">AI Automation</button>
-        <button class="filter-tab" data-filter="saas" role="tab" aria-selected="false" data-i18n="filter-saas">SaaS / Web App</button>
-      </div>
       <div class="projects-grid">
 
-        <div class="project-card featured" data-category="ai-automation">
+        <div class="category-divider" data-i18n="filter-ai">AI Automation</div>
+
+        <div class="project-card featured">
           <div class="project-tag" data-i18n="p1-tag">Voice AI</div>
           <h3 data-i18n="p1-title">Voice Agent for Business</h3>
           <p data-i18n="p1-desc">AI-powered voice agent built on Retell AI and ElevenLabs — handles inbound/outbound business calls with natural conversation flow and CRM integration.</p>
@@ -169,7 +166,7 @@
           <div class="project-status done" data-i18n="p1-status">Done</div>
         </div>
 
-        <div class="project-card" data-category="ai-automation">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p2-tag">Voice AI</div>
           <h3 data-i18n="p2-title">ElevenLabs Voice Agent</h3>
           <p data-i18n="p2-desc">Standalone voice agent built directly in ElevenLabs — production-ready conversational AI with custom voice cloning.</p>
@@ -179,7 +176,7 @@
           <div class="project-status done" data-i18n="p2-status">Done</div>
         </div>
 
-        <div class="project-card featured" data-category="ai-automation">
+        <div class="project-card featured">
           <div class="project-tag" data-i18n="p3-tag">Chatbot</div>
           <h3 data-i18n="p3-title">Business Chatbot — RAG</h3>
           <p data-i18n="p3-desc">AI chatbot built on Claude and a full RAG pipeline. Ingests real company data — product specs, FAQs, service info — and answers customer questions accurately. Embeds as a widget on any website. Demo: live automotive spec assistant trained on Proton X50 data.</p>
@@ -190,7 +187,7 @@
           <a href="/chatbot.html" class="project-link" style="margin-top:1rem;display:inline-block;">View Project →</a>
         </div>
 
-        <div class="project-card" data-category="ai-automation">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p4-tag">AI Tool</div>
           <h3 data-i18n="p4-title">AI Proposal Generator</h3>
           <p data-i18n="p4-desc">AI-powered business proposal generator — creates tailored, professional proposals fast so you can close deals, not write documents.</p>
@@ -200,7 +197,7 @@
           <div class="project-status done" data-i18n="p4-status">Done</div>
         </div>
 
-        <div class="project-card" data-category="ai-automation">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p5-tag">Content</div>
           <h3 data-i18n="p5-title">Content Marketing Tools</h3>
           <p data-i18n="p5-desc">Suite of AI tools for content creation — from ideation to drafting to scheduling, built for marketing teams.</p>
@@ -210,7 +207,7 @@
           <div class="project-status done" data-i18n="p5-status">Done</div>
         </div>
 
-        <div class="project-card" data-category="ai-automation">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p6-tag">Workflow</div>
           <h3 data-i18n="p6-title">Claude Agent Workflow Builder</h3>
           <p data-i18n="p6-desc">Visual system for designing AI agent workflows — the WAT framework (Workflows, Agents, Tools) made tangible.</p>
@@ -220,7 +217,20 @@
           <div class="project-status done" data-i18n="p6-status">Done</div>
         </div>
 
-        <div class="project-card featured" data-category="saas">
+        <div class="project-card featured">
+          <div class="project-tag" data-i18n="p11-tag">CX AI</div>
+          <h3 data-i18n="p11-title">CX Intelligence Suite</h3>
+          <p data-i18n="p11-desc">4-in-1 customer experience AI platform — agentic telco service bot, contact center analytics dashboard, GenAI ROI value case builder, and service blueprint generator. Built for SEA enterprise CX teams.</p>
+          <div class="project-tech">
+            <span>Next.js</span><span>Claude API</span><span>Agentic AI</span><span>Tool Use</span>
+          </div>
+          <div class="project-status live" data-i18n="p11-status">Live</div>
+          <a href="https://cx.aibizmy.com" target="_blank" rel="noopener" class="project-link" data-i18n="launch-app">Launch App →</a>
+        </div>
+
+        <div class="category-divider" data-i18n="filter-saas">SaaS / Web App</div>
+
+        <div class="project-card featured">
           <div class="project-tag" data-i18n="p7-tag">Web App</div>
           <h3 data-i18n="p7-title">AI Resume Builder</h3>
           <p data-i18n="p7-desc">Upload your CV, paste a job description — get a tailored, ATS-ready resume in seconds. Built with AI-powered rewriting and Supabase auth.</p>
@@ -236,7 +246,7 @@
           </div>
         </div>
 
-        <div class="project-card" data-category="saas">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p8-tag">Web App</div>
           <h3 data-i18n="p8-title">Habit Tracker</h3>
           <p data-i18n="p8-desc">Daily habit tracking with streaks, progress analytics, and smart reminders to keep you consistent.</p>
@@ -247,7 +257,7 @@
           <a href="https://habits.aibizmy.com" target="_blank" rel="noopener" class="project-link" data-i18n="launch-app">Launch App →</a>
         </div>
 
-        <div class="project-card" data-category="saas">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p9-tag">Web App</div>
           <h3 data-i18n="p9-title">AcaraHQ</h3>
           <p data-i18n="p9-desc">Event management platform — attendee registration, agenda builder, and check-in workflow for end-to-end event ops.</p>
@@ -258,7 +268,7 @@
           <a href="https://events.aibizmy.com" target="_blank" rel="noopener" class="project-link" data-i18n="launch-app">Launch App →</a>
         </div>
 
-        <div class="project-card" data-category="saas">
+        <div class="project-card">
           <div class="project-tag" data-i18n="p10-tag">Web App</div>
           <h3 data-i18n="p10-title">Property Tracker</h3>
           <p data-i18n="p10-desc">Personal property ownership dashboard — track grant renewals, tenure expiry, tenant details, rent due dates, and portfolio value in one place.</p>
@@ -269,7 +279,7 @@
           <a href="https://property.aibizmy.com" target="_blank" rel="noopener" class="project-link" data-i18n="launch-app">Launch App →</a>
         </div>
 
-        <div class="project-card featured" data-category="saas">
+        <div class="project-card featured">
           <div class="project-tag">Finance AI</div>
           <h3>FinAI Intel</h3>
           <p>3-in-1 finance AI app: stock sentiment analysis, economic indicator tracking, and market brief generator. Built as a portfolio piece for senior AI innovation roles.</p>
@@ -280,7 +290,7 @@
           <a href="https://finai.aibizmy.com" target="_blank" rel="noopener" class="project-link">Launch App →</a>
         </div>
 
-        <div class="project-card" data-category="saas">
+        <div class="project-card">
           <div class="project-tag">Education</div>
           <h3>Rancangan Pengajian Harian</h3>
           <p>AI-powered daily lesson plan generator for Malaysian educators. Produces structured rancangan pengajian harian in BM, aligned to KSSR/KSSM formats.</p>
@@ -289,17 +299,6 @@
           </div>
           <div class="project-status live">Live</div>
           <a href="https://pengajian.aibizmy.com" target="_blank" rel="noopener" class="project-link">Launch App →</a>
-        </div>
-
-        <div class="project-card featured" data-category="ai-automation">
-          <div class="project-tag" data-i18n="p11-tag">CX AI</div>
-          <h3 data-i18n="p11-title">CX Intelligence Suite</h3>
-          <p data-i18n="p11-desc">4-in-1 customer experience AI platform — agentic telco service bot, contact center analytics dashboard, GenAI ROI value case builder, and service blueprint generator. Built for SEA enterprise CX teams.</p>
-          <div class="project-tech">
-            <span>Next.js</span><span>Claude API</span><span>Agentic AI</span><span>Tool Use</span>
-          </div>
-          <div class="project-status live" data-i18n="p11-status">Live</div>
-          <a href="https://cx.aibizmy.com" target="_blank" rel="noopener" class="project-link" data-i18n="launch-app">Launch App →</a>
         </div>
 
       </div>

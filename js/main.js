@@ -312,19 +312,6 @@ function setLanguage(lang) {
   localStorage.setItem('lang', lang);
 }
 
-// ---- PROJECT FILTER ----
-function filterProjects(category) {
-  document.querySelectorAll('.project-card').forEach(card => {
-    const match = category === 'all' || card.getAttribute('data-category') === category;
-    card.style.display = match ? '' : 'none';
-  });
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    const isActive = tab.getAttribute('data-filter') === category;
-    tab.classList.toggle('active', isActive);
-    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-  });
-}
-
 // Init language on load
 const savedLang = localStorage.getItem('lang') || 'en';
 document.addEventListener('DOMContentLoaded', () => {
@@ -343,11 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('heroBtnWork').addEventListener('click', () => scrollTo('projects'));
   document.getElementById('heroBtnContact').addEventListener('click', () => scrollTo('contact'));
   document.getElementById('blogCtaBtn').addEventListener('click', () => scrollTo('contact'));
-
-  // Filter tabs
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.addEventListener('click', () => filterProjects(tab.getAttribute('data-filter')));
-  });
 });
 
 // ---- NAVBAR SCROLL ----

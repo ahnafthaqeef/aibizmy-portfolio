@@ -765,39 +765,28 @@ body {
   transform: translateY(-1px);
 }
 
-/* ---- PROJECT FILTER TABS ---- */
-.filter-tabs {
+/* ---- CATEGORY DIVIDERS ---- */
+.category-divider {
+  grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 2.5rem;
-}
-.filter-tab {
-  display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1.25rem;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  color: var(--text-muted);
+  gap: 1rem;
+  padding: 2rem 0 0.5rem;
   font-family: var(--font-main);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
-  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent1-light);
 }
-.filter-tab:hover {
-  border-color: var(--accent1);
-  color: var(--text);
-  background: rgba(124, 58, 237, 0.08);
+.category-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
-.filter-tab.active {
-  background: var(--gradient);
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+.category-divider:first-child {
+  padding-top: 0;
 }
 
 /* ---- BLOG ---- */
