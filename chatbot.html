@@ -9,279 +9,459 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    /* ---- PAGE-SPECIFIC ---- */
-    .project-hero {
-      padding: 140px 0 80px;
-      text-align: center;
+    /* All classes prefixed cb- to avoid global CSS conflicts */
+
+    .cb-page { padding-top: 90px; }
+
+    /* HERO */
+    .cb-hero {
+      padding: 72px 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
-    .back-link {
+    @media (max-width: 860px) {
+      .cb-hero { grid-template-columns: 1fr; gap: 3rem; }
+      .cb-chat-mockup { display: none; }
+    }
+    .cb-back {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
+      gap: 0.45rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       text-decoration: none;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.8rem;
       transition: color 0.2s;
     }
-    .back-link:hover { color: var(--accent2); }
-    .project-badge {
+    .cb-back:hover { color: var(--accent2); }
+    .cb-badge {
       display: inline-block;
-      padding: 0.4rem 1rem;
-      background: rgba(124,58,237,0.15);
-      border: 1px solid rgba(124,58,237,0.35);
+      padding: 0.38rem 1rem;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.3);
       border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent1-light);
-      margin-bottom: 1.5rem;
-    }
-    .project-hero h1 {
-      font-family: var(--font-main);
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.2rem;
-    }
-    .project-hero p {
-      color: var(--text-muted);
-      font-size: 1.15rem;
-      max-width: 600px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.75;
-    }
-    .tech-pills {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-bottom: 2.5rem;
-    }
-    .tech-pill {
-      padding: 0.35rem 0.9rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      background: var(--gradient);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-outline {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      border: 1px solid var(--border-accent);
-      color: var(--accent1-light);
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-outline:hover { background: rgba(124,58,237,0.1); }
-
-    /* ---- DIVIDER ---- */
-    .section { padding: 80px 0; }
-    .section + .section { border-top: 1px solid var(--border); }
-
-    /* ---- WHAT IT DOES ---- */
-    .capabilities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
-    .cap-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.8rem;
-      transition: border-color 0.2s;
-    }
-    .cap-card:hover { border-color: var(--border-accent); }
-    .cap-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .cap-card h3 {
-      font-family: var(--font-main);
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-    .cap-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* ---- HOW IT WORKS (pipeline) ---- */
-    .pipeline {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .pipeline-step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 1.2rem;
-      align-items: start;
-    }
-    .step-num {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-main);
-      font-weight: 800;
-      font-size: 1rem;
-      color: #fff;
-      flex-shrink: 0;
-    }
-    .step-body h4 {
-      font-family: var(--font-main);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .step-body p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    .pipeline-connector {
-      width: 2px;
-      height: 24px;
-      background: var(--border);
-      margin-left: 23px;
-      border-radius: 2px;
-    }
-
-    /* ---- USE CASE ---- */
-    .usecase-box {
-      background: var(--surface);
-      border: 1px solid var(--border-accent);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      margin-top: 2.5rem;
-    }
-    .usecase-box .uc-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent3);
-      margin-bottom: 0.8rem;
-    }
-    .usecase-box h3 {
-      font-family: var(--font-main);
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .usecase-box p {
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 1rem;
-    }
-    .uc-qa {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    .qa-row {
-      background: var(--bg2);
-      border-radius: var(--radius-md);
-      padding: 1rem 1.2rem;
-      font-size: 0.9rem;
-    }
-    .qa-row.user-msg { border-left: 3px solid var(--accent1); }
-    .qa-row.bot-msg { border-left: 3px solid var(--accent2); }
-    .qa-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
-    }
-    .qa-row.user-msg .qa-label { color: var(--accent1-light); }
-    .qa-row.bot-msg .qa-label { color: var(--accent2-light); }
-    .qa-row p { color: var(--text); margin: 0; line-height: 1.6; }
-
-    /* ---- STACK ---- */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-    .stack-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.2rem 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .stack-item span:first-child {
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--accent2-light);
+      margin-bottom: 1.4rem;
     }
-    .stack-item span:last-child {
+    .cb-hero-title {
+      font-family: var(--font-main);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+    }
+    .cb-hero-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+    .cb-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.2rem;
+    }
+    .cb-pill {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #9494b8;
+      white-space: nowrap;
+    }
+    .cb-btns {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .cb-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.82rem 1.8rem;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cb-btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .cb-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.82rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #eeeef8;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .cb-btn-ghost:hover { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.08); }
+
+    /* CHAT MOCKUP */
+    .cb-chat-mockup {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .cb-chat-header {
+      background: #181830;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .cb-chat-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .cb-chat-name {
       font-family: var(--font-main);
       font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
+      font-size: 0.9rem;
+      color: #eeeef8;
+    }
+    .cb-chat-status {
+      font-size: 0.72rem;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .cb-chat-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .cb-chat-body {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-height: 300px;
+    }
+    .cb-msg {
+      max-width: 85%;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+    .cb-msg-user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, rgba(124,58,237,0.35), rgba(6,182,212,0.25));
+      border: 1px solid rgba(124,58,237,0.3);
+      color: #eeeef8;
+      border-bottom-right-radius: 4px;
+    }
+    .cb-msg-bot {
+      align-self: flex-start;
+      background: #181830;
+      border: 1px solid rgba(255,255,255,0.07);
+      color: #c4c4d8;
+      border-bottom-left-radius: 4px;
+    }
+    .cb-chat-input {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .cb-input-fake {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #6666aa;
+    }
+    .cb-send-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
     }
 
-    /* ---- CTA SECTION ---- */
-    .cta-section {
-      padding: 80px 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
+    /* SECTIONS */
+    .cb-section { padding: 72px 0; border-top: 1px solid rgba(255,255,255,0.07); }
+    .cb-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
     }
-    .cta-section h2 {
+    .cb-label::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background: var(--accent2);
+      border-radius: 2px;
+    }
+    .cb-title {
       font-family: var(--font-main);
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
       margin-bottom: 1rem;
     }
-    .cta-section p {
+    .cb-sub {
       color: var(--text-muted);
-      max-width: 480px;
-      margin: 0 auto 2rem;
+      font-size: 1rem;
       line-height: 1.75;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* CAPABILITIES */
+    .cb-caps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .cb-cap {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 1.6rem;
+      transition: border-color 0.25s;
+    }
+    .cb-cap:hover { border-color: rgba(124,58,237,0.4); }
+    .cb-cap-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.9rem;
+      display: block;
+    }
+    .cb-cap h3 {
+      font-family: var(--font-main);
+      font-size: 0.97rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: #eeeef8;
+    }
+    .cb-cap p {
+      font-size: 0.87rem;
+      color: #9494b8;
+      line-height: 1.6;
+    }
+
+    /* PIPELINE */
+    .cb-pipeline { display: flex; flex-direction: column; gap: 0; }
+    .cb-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.4rem;
+      align-items: start;
+      position: relative;
+    }
+    .cb-step:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: -28px;
+      width: 2px;
+      background: rgba(255,255,255,0.07);
+    }
+    .cb-step + .cb-step { margin-top: 2rem; }
+    .cb-step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-main);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(124,58,237,0.3);
+    }
+    .cb-step-body { padding-top: 0.8rem; }
+    .cb-step-body h4 {
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #eeeef8;
+      margin-bottom: 0.35rem;
+    }
+    .cb-step-body p { font-size: 0.88rem; color: #9494b8; line-height: 1.65; }
+
+    /* USE CASE */
+    .cb-usecase {
+      background: #111124;
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .cb-usecase-header {
+      background: #181830;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .cb-usecase-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      flex-shrink: 0;
+    }
+    .cb-usecase-title {
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #eeeef8;
+    }
+    .cb-usecase-tag {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f59e0b;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+    }
+    .cb-usecase-body { padding: 2rem; }
+    .cb-usecase-desc {
+      font-size: 0.92rem;
+      color: #9494b8;
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+      max-width: 600px;
+    }
+    .cb-qa { display: flex; flex-direction: column; gap: 0.8rem; }
+    .cb-qa-row {
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+    }
+    .cb-qa-user {
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.2);
+      align-self: flex-end;
+    }
+    .cb-qa-bot {
+      background: rgba(6,182,212,0.06);
+      border: 1px solid rgba(6,182,212,0.18);
+    }
+    .cb-qa-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .cb-qa-user .cb-qa-label { color: #a78bfa; }
+    .cb-qa-bot .cb-qa-label { color: #67e8f9; }
+    .cb-qa-row p { color: #eeeef8; margin: 0; line-height: 1.6; }
+
+    /* STACK */
+    .cb-stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .cb-stack-item {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+    }
+    .cb-stack-layer {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #9494b8;
+      margin-bottom: 0.35rem;
+    }
+    .cb-stack-name {
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 0.97rem;
+      color: #eeeef8;
+    }
+
+    /* CTA BOTTOM */
+    .cb-cta {
+      padding: 72px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+    }
+    .cb-cta h2 {
+      font-family: var(--font-main);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
+    .cb-cta p {
+      color: #9494b8;
+      max-width: 440px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .cb-cta-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* FOOTER */
+    .cb-footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      color: #9494b8;
+      font-size: 0.82rem;
     }
   </style>
 </head>
@@ -289,194 +469,233 @@
 
   <!-- NAV -->
   <nav id="navbar">
-    <a href="/" class="nav-logo">AT</a>
+    <a href="/" class="nav-logo" style="text-decoration:none;">AT</a>
     <ul class="nav-links">
       <li><a href="/#about">About</a></li>
       <li><a href="/#projects">Projects</a></li>
       <li><a href="/#blog">Content</a></li>
       <li><a href="/#contact">Contact</a></li>
     </ul>
-    <a href="mailto:ahnafthaqeef@gmail.com" class="nav-cta">Request Demo</a>
+    <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="nav-cta" style="text-decoration:none;">Request Demo</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="project-hero container">
-    <a href="/" class="back-link">&#8592; Back to Portfolio</a>
-    <div class="project-badge">Project Showcase</div>
-    <h1>Business Chatbot<br/><span class="gradient-text">Powered by RAG</span></h1>
-    <p>An AI chatbot that ingests your company data, understands it, and answers customer questions accurately. Built on Claude API with a full Retrieval-Augmented Generation pipeline. Embeds as a widget on any website.</p>
-    <div class="tech-pills">
-      <span class="tech-pill">Claude API</span>
-      <span class="tech-pill">RAG Pipeline</span>
-      <span class="tech-pill">Vector Embeddings</span>
-      <span class="tech-pill">JavaScript</span>
-      <span class="tech-pill">Node.js</span>
-    </div>
-    <div class="cta-row">
-      <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="btn-primary">Request a Demo</a>
-      <a href="/#projects" class="btn-outline">See All Projects</a>
-    </div>
-  </section>
+  <div class="cb-page">
 
-  <!-- WHAT IT DOES -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Capabilities</div>
-      <h2 class="section-title">What it <span class="gradient-text">does</span></h2>
-      <p class="section-sub">A chatbot that actually knows your business -- not a generic bot copy-pasting from a FAQ page.</p>
-      <div class="capabilities-grid">
-        <div class="cap-card">
-          <div class="cap-icon">📄</div>
-          <h3>Ingests Your Data</h3>
-          <p>Feed it product specs, service manuals, pricing sheets, or any documents. It learns your content, not generic training data.</p>
+    <!-- HERO -->
+    <section class="container">
+      <div class="cb-hero">
+
+        <!-- LEFT: Copy -->
+        <div>
+          <a href="/" class="cb-back">&#8592; Back to Portfolio</a>
+          <div class="cb-badge">Project Breakdown</div>
+          <h1 class="cb-hero-title">
+            Business Chatbot<br/>
+            <span class="gradient-text">Powered by RAG</span>
+          </h1>
+          <p class="cb-hero-sub">
+            An AI chatbot that ingests your company data, understands it, and answers customer questions accurately. Built on Claude API with a full Retrieval-Augmented Generation pipeline.
+          </p>
+          <div class="cb-pills">
+            <span class="cb-pill">Claude API</span>
+            <span class="cb-pill">RAG Pipeline</span>
+            <span class="cb-pill">Vector Embeddings</span>
+            <span class="cb-pill">JavaScript</span>
+            <span class="cb-pill">Node.js</span>
+          </div>
+          <div class="cb-btns">
+            <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="cb-btn-primary">Request a Demo &#8599;</a>
+            <a href="/" class="cb-btn-ghost">All Projects</a>
+          </div>
         </div>
-        <div class="cap-card">
-          <div class="cap-icon">🎯</div>
-          <h3>Answers Accurately</h3>
-          <p>RAG retrieves the exact relevant chunks before generating a response. No hallucination, no guesswork -- answers grounded in your actual content.</p>
+
+        <!-- RIGHT: Chat Mockup -->
+        <div class="cb-chat-mockup">
+          <div class="cb-chat-header">
+            <div class="cb-chat-avatar">&#129302;</div>
+            <div>
+              <div class="cb-chat-name">Proton X50 Assistant</div>
+              <div class="cb-chat-status">Online</div>
+            </div>
+          </div>
+          <div class="cb-chat-body">
+            <div class="cb-msg cb-msg-user">What safety features does the X50 have?</div>
+            <div class="cb-msg cb-msg-bot">The X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control, Hill Hold Assist, and a 360-degree camera. The Flagship adds AEB and Lane Keep Assist.</div>
+            <div class="cb-msg cb-msg-user">Which variant has the panoramic roof?</div>
+            <div class="cb-msg cb-msg-bot">The panoramic sunroof is on the Premium and Flagship variants. Premium gives you the sunroof at a lower price point if that is your priority.</div>
+          </div>
+          <div class="cb-chat-input">
+            <div class="cb-input-fake">Ask about the X50...</div>
+            <div class="cb-send-btn">&#10148;</div>
+          </div>
         </div>
-        <div class="cap-card">
-          <div class="cap-icon">💬</div>
-          <h3>Remembers Context</h3>
-          <p>Maintains conversation history within a session. Users can ask follow-up questions naturally without repeating themselves.</p>
-        </div>
-        <div class="cap-card">
-          <div class="cap-icon">🔌</div>
-          <h3>Embeds Anywhere</h3>
-          <p>Drops into any website as a chat widget. One script tag -- no rebuild required, no platform dependency.</p>
-        </div>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Architecture</div>
-      <h2 class="section-title">How it <span class="gradient-text">works</span></h2>
-      <p class="section-sub">A clean RAG pipeline -- document ingestion to accurate AI response in four steps.</p>
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <h4>Document Ingestion</h4>
-            <p>Your content (PDFs, HTML, text, product specs) is parsed and split into semantic chunks optimised for retrieval.</p>
+    <!-- CAPABILITIES -->
+    <section class="cb-section">
+      <div class="container">
+        <div class="cb-label">Capabilities</div>
+        <h2 class="cb-title">What it <span class="gradient-text">does</span></h2>
+        <p class="cb-sub">A chatbot that actually knows your business, not a generic bot pulling from a FAQ page.</p>
+        <div class="cb-caps-grid">
+          <div class="cb-cap">
+            <span class="cb-cap-icon">&#128196;</span>
+            <h3>Ingests Your Data</h3>
+            <p>Feed it product specs, service manuals, pricing sheets, or any documents. It learns your content, not generic training data.</p>
           </div>
-        </div>
-        <div class="pipeline-connector"></div>
-        <div class="pipeline-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <h4>Vector Embedding</h4>
-            <p>Each chunk is converted into a vector embedding and stored in a vector database. This powers semantic search -- meaning-based, not keyword-based.</p>
+          <div class="cb-cap">
+            <span class="cb-cap-icon">&#127919;</span>
+            <h3>Answers Accurately</h3>
+            <p>RAG retrieves the exact relevant chunks before generating a response. Answers grounded in your actual content, no hallucinations.</p>
           </div>
-        </div>
-        <div class="pipeline-connector"></div>
-        <div class="pipeline-step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <h4>Retrieval</h4>
-            <p>When a user asks a question, the pipeline finds the most relevant chunks from your data using similarity search.</p>
+          <div class="cb-cap">
+            <span class="cb-cap-icon">&#128172;</span>
+            <h3>Remembers Context</h3>
+            <p>Maintains conversation history within a session. Users ask follow-ups naturally without repeating themselves.</p>
           </div>
-        </div>
-        <div class="pipeline-connector"></div>
-        <div class="pipeline-step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <h4>Generation via Claude API</h4>
-            <p>The retrieved context is passed to Claude alongside the user's question. Claude generates a grounded, accurate response -- never hallucinating beyond what your data contains.</p>
+          <div class="cb-cap">
+            <span class="cb-cap-icon">&#128268;</span>
+            <h3>Embeds Anywhere</h3>
+            <p>Drops into any website as a chat widget via a single script tag. No rebuild, no platform dependency.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- USE CASE -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Use Case</div>
-      <h2 class="section-title">Demo: <span class="gradient-text">Proton X50</span></h2>
-      <p class="section-sub">The chatbot was trained on the full Proton X50 vehicle specification -- features, variants, tech, pricing structure. Here is how it responds.</p>
-      <div class="usecase-box">
-        <div class="uc-label">Live Demo Conversation</div>
-        <h3>Proton X50 Spec Assistant</h3>
-        <p>A car dealership chatbot trained on the complete X50 product page. Customers get accurate answers instantly -- without calling a salesperson.</p>
-        <div class="uc-qa">
-          <div class="qa-row user-msg">
-            <div class="qa-label">Customer</div>
-            <p>What safety features does the Proton X50 have?</p>
+    <!-- HOW IT WORKS -->
+    <section class="cb-section">
+      <div class="container">
+        <div class="cb-label">Architecture</div>
+        <h2 class="cb-title">How it <span class="gradient-text">works</span></h2>
+        <p class="cb-sub">A clean RAG pipeline from document ingestion to accurate AI response in four steps.</p>
+        <div class="cb-pipeline">
+          <div class="cb-step">
+            <div class="cb-step-num">1</div>
+            <div class="cb-step-body">
+              <h4>Document Ingestion</h4>
+              <p>Your content (PDFs, HTML, product specs, FAQs) is parsed and split into semantic chunks optimised for retrieval.</p>
+            </div>
           </div>
-          <div class="qa-row bot-msg">
-            <div class="qa-label">AI Assistant</div>
-            <p>The Proton X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control (ESC), Hill Hold Assist, and a 360-degree camera on the Premium variant. The Flagship variant adds Autonomous Emergency Braking (AEB) and Lane Keep Assist (LKA) as standard.</p>
+          <div class="cb-step">
+            <div class="cb-step-num">2</div>
+            <div class="cb-step-body">
+              <h4>Vector Embedding</h4>
+              <p>Each chunk is converted into a vector embedding and stored. This powers semantic search based on meaning, not keywords.</p>
+            </div>
           </div>
-          <div class="qa-row user-msg">
-            <div class="qa-label">Customer</div>
-            <p>Which variant should I get if I want the panoramic roof?</p>
+          <div class="cb-step">
+            <div class="cb-step-num">3</div>
+            <div class="cb-step-body">
+              <h4>Retrieval</h4>
+              <p>When a user asks a question, the pipeline finds the most relevant chunks from your data using similarity search.</p>
+            </div>
           </div>
-          <div class="qa-row bot-msg">
-            <div class="qa-label">AI Assistant</div>
-            <p>The panoramic sunroof is available on the Premium and Flagship variants. If that is your priority, the Premium variant gives you the sunroof alongside most comfort features at a lower price point than the Flagship.</p>
+          <div class="cb-step">
+            <div class="cb-step-num">4</div>
+            <div class="cb-step-body">
+              <h4>Generation via Claude API</h4>
+              <p>The retrieved context is passed to Claude alongside the user's question. Claude generates a grounded, accurate response every time.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TECH STACK -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Tech Stack</div>
-      <h2 class="section-title">Built <span class="gradient-text">with</span></h2>
-      <p class="section-sub">Chosen for accuracy, speed, and ease of integration into any existing website.</p>
-      <div class="stack-grid">
-        <div class="stack-item">
-          <span>AI Model</span>
-          <span>Claude API</span>
-        </div>
-        <div class="stack-item">
-          <span>Retrieval</span>
-          <span>RAG Pipeline</span>
-        </div>
-        <div class="stack-item">
-          <span>Search</span>
-          <span>Vector Embeddings</span>
-        </div>
-        <div class="stack-item">
-          <span>Backend</span>
-          <span>Node.js</span>
-        </div>
-        <div class="stack-item">
-          <span>Widget</span>
-          <span>JavaScript</span>
-        </div>
-        <div class="stack-item">
-          <span>Deployment</span>
-          <span>Embeddable</span>
+    <!-- USE CASE -->
+    <section class="cb-section">
+      <div class="container">
+        <div class="cb-label">Use Case</div>
+        <h2 class="cb-title">Demo: <span class="gradient-text">Proton X50</span></h2>
+        <p class="cb-sub">Trained on the full Proton X50 vehicle specification. Customers get accurate answers instantly.</p>
+        <div class="cb-usecase">
+          <div class="cb-usecase-header">
+            <div class="cb-usecase-dot"></div>
+            <div class="cb-usecase-title">Proton X50 Spec Assistant</div>
+            <div class="cb-usecase-tag">Automotive</div>
+          </div>
+          <div class="cb-usecase-body">
+            <p class="cb-usecase-desc">
+              A dealership chatbot trained on the complete X50 product page including all variants, features, safety specs, and pricing structure. Customers get instant, accurate answers without calling a salesperson.
+            </p>
+            <div class="cb-qa">
+              <div class="cb-qa-row cb-qa-user">
+                <div class="cb-qa-label">Customer</div>
+                <p>What safety features does the Proton X50 have?</p>
+              </div>
+              <div class="cb-qa-row cb-qa-bot">
+                <div class="cb-qa-label">AI Assistant</div>
+                <p>The Proton X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control, Hill Hold Assist, and a 360-degree camera on the Premium variant. The Flagship adds Autonomous Emergency Braking and Lane Keep Assist as standard.</p>
+              </div>
+              <div class="cb-qa-row cb-qa-user">
+                <div class="cb-qa-label">Customer</div>
+                <p>Which variant should I get if I want the panoramic roof?</p>
+              </div>
+              <div class="cb-qa-row cb-qa-bot">
+                <div class="cb-qa-label">AI Assistant</div>
+                <p>The panoramic sunroof is available on the Premium and Flagship variants. If that is your priority, the Premium variant gives you the sunroof alongside most comfort features at a lower price point than the Flagship.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Want this for <span class="gradient-text">your business?</span></h2>
-      <p>I can build a chatbot trained on your data -- products, services, FAQs -- and embed it on your site within days.</p>
-      <div class="cta-row">
-        <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="btn-primary">Get In Touch</a>
-        <a href="/" class="btn-outline">View All Projects</a>
+    <!-- TECH STACK -->
+    <section class="cb-section">
+      <div class="container">
+        <div class="cb-label">Tech Stack</div>
+        <h2 class="cb-title">Built <span class="gradient-text">with</span></h2>
+        <p class="cb-sub">Chosen for accuracy, speed, and ease of integration into any existing website.</p>
+        <div class="cb-stack-grid">
+          <div class="cb-stack-item">
+            <div class="cb-stack-layer">AI Model</div>
+            <div class="cb-stack-name">Claude API</div>
+          </div>
+          <div class="cb-stack-item">
+            <div class="cb-stack-layer">Retrieval</div>
+            <div class="cb-stack-name">RAG Pipeline</div>
+          </div>
+          <div class="cb-stack-item">
+            <div class="cb-stack-layer">Search</div>
+            <div class="cb-stack-name">Vector Embeddings</div>
+          </div>
+          <div class="cb-stack-item">
+            <div class="cb-stack-layer">Backend</div>
+            <div class="cb-stack-name">Node.js</div>
+          </div>
+          <div class="cb-stack-item">
+            <div class="cb-stack-layer">Widget</div>
+            <div class="cb-stack-name">JavaScript</div>
+          </div>
+          <div class="cb-stack-item">
+            <div class="cb-stack-layer">Deployment</div>
+            <div class="cb-stack-name">Embeddable</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer style="text-align:center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem;">
-    &copy; 2026 Ahnaf Thaqeef. All rights reserved.
-  </footer>
+    <!-- CTA -->
+    <section class="cb-cta">
+      <div class="container">
+        <h2>Want this for <span class="gradient-text">your business?</span></h2>
+        <p>I can build a chatbot trained on your data and embed it on your site within days.</p>
+        <div class="cb-cta-row">
+          <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="cb-btn-primary">Get In Touch &#8599;</a>
+          <a href="/" class="cb-btn-ghost">View All Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cb-footer">
+      &copy; 2026 Ahnaf Thaqeef. All rights reserved.
+    </footer>
+
+  </div>
 
   <script>
-    // Navbar scroll effect (reuse from main site)
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
