@@ -9,465 +9,323 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    /* All classes prefixed cb- to avoid global CSS conflicts */
+    * { box-sizing: border-box; }
 
-    .cb-page { padding-top: 90px; }
+    .cb-wrap {
+      padding-top: 90px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
 
-    /* HERO */
-    .cb-hero {
-      padding: 72px 0 80px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    @media (max-width: 860px) {
-      .cb-hero { grid-template-columns: 1fr; gap: 3rem; }
-      .cb-chat-mockup { display: none; }
-    }
+    /* ── HERO ── */
+    .cb-hero { padding: 64px 0 56px; text-align: center; }
+
     .cb-back {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      gap: 6px;
+      font-size: 13px;
+      color: #9494b8;
       text-decoration: none;
-      margin-bottom: 1.8rem;
-      transition: color 0.2s;
+      margin-bottom: 28px;
     }
-    .cb-back:hover { color: var(--accent2); }
+    .cb-back:hover { color: #67e8f9; }
+
     .cb-badge {
       display: inline-block;
-      padding: 0.38rem 1rem;
+      padding: 5px 14px;
       background: rgba(6,182,212,0.1);
-      border: 1px solid rgba(6,182,212,0.3);
+      border: 1px solid rgba(6,182,212,0.28);
       border-radius: 999px;
-      font-size: 0.72rem;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent2-light);
-      margin-bottom: 1.4rem;
+      color: #67e8f9;
+      margin-bottom: 20px;
     }
-    .cb-hero-title {
-      font-family: var(--font-main);
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+
+    .cb-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 800;
       line-height: 1.12;
       letter-spacing: -0.03em;
-      margin-bottom: 1.2rem;
+      color: #eeeef8;
+      margin: 0 0 18px;
     }
-    .cb-hero-sub {
-      color: var(--text-muted);
-      font-size: 1.05rem;
+
+    .cb-hero p {
+      font-size: 16px;
+      color: #9494b8;
       line-height: 1.75;
-      margin-bottom: 2rem;
-      max-width: 480px;
+      max-width: 560px;
+      margin: 0 auto 28px;
     }
+
     .cb-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2.2rem;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
     }
     .cb-pill {
       display: inline-block;
-      padding: 0.3rem 0.85rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
+      padding: 5px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.11);
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 12px;
       font-weight: 500;
       color: #9494b8;
-      white-space: nowrap;
     }
-    .cb-btns {
-      display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-    }
-    .cb-btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.82rem 1.8rem;
+
+    .cb-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .cb-btn-p {
+      display: inline-block;
+      padding: 12px 24px;
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
       color: #fff;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 14px;
       border-radius: 10px;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(124,58,237,0.35);
-      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.32);
+      transition: opacity 0.2s;
     }
-    .cb-btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .cb-btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.82rem 1.8rem;
+    .cb-btn-p:hover { opacity: 0.85; }
+    .cb-btn-g {
+      display: inline-block;
+      padding: 12px 24px;
       border: 1px solid rgba(255,255,255,0.12);
       color: #eeeef8;
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 14px;
       border-radius: 10px;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s;
     }
-    .cb-btn-ghost:hover { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.08); }
+    .cb-btn-g:hover { border-color: rgba(124,58,237,0.5); }
 
-    /* CHAT MOCKUP */
-    .cb-chat-mockup {
+    /* ── CHAT DEMO ── */
+    .cb-chat {
       background: #111124;
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      margin-bottom: 72px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
-    .cb-chat-header {
+    .cb-chat-bar {
       background: #181830;
       border-bottom: 1px solid rgba(255,255,255,0.07);
-      padding: 1rem 1.4rem;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 10px;
     }
-    .cb-chat-avatar {
-      width: 36px;
-      height: 36px;
+    .cb-chat-dot {
+      width: 10px; height: 10px;
       border-radius: 50%;
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
       flex-shrink: 0;
     }
-    .cb-chat-name {
-      font-family: var(--font-main);
+    .cb-chat-bar-name {
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 14px;
       color: #eeeef8;
     }
-    .cb-chat-status {
-      font-size: 0.72rem;
-      color: #22c55e;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .cb-chat-status::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: #22c55e;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .cb-chat-body {
-      padding: 1.4rem;
+    .cb-chat-bar-sub { font-size: 11px; color: #22c55e; margin-left: 2px; }
+    .cb-chat-msgs {
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      min-height: 300px;
+      gap: 12px;
     }
-    .cb-msg {
-      max-width: 85%;
-      padding: 0.75rem 1rem;
+    .cb-user-msg, .cb-bot-msg {
+      max-width: 75%;
+      padding: 10px 14px;
       border-radius: 12px;
-      font-size: 0.85rem;
+      font-size: 14px;
       line-height: 1.55;
     }
-    .cb-msg-user {
+    .cb-user-msg {
       align-self: flex-end;
-      background: linear-gradient(135deg, rgba(124,58,237,0.35), rgba(6,182,212,0.25));
-      border: 1px solid rgba(124,58,237,0.3);
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.28);
       color: #eeeef8;
       border-bottom-right-radius: 4px;
     }
-    .cb-msg-bot {
+    .cb-bot-msg {
       align-self: flex-start;
       background: #181830;
       border: 1px solid rgba(255,255,255,0.07);
       color: #c4c4d8;
       border-bottom-left-radius: 4px;
     }
-    .cb-chat-input {
+    .cb-chat-input-row {
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 0.9rem 1.2rem;
+      padding: 12px 16px;
       display: flex;
+      gap: 10px;
       align-items: center;
-      gap: 0.8rem;
     }
-    .cb-input-fake {
+    .cb-fake-input {
       flex: 1;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 8px;
-      padding: 0.6rem 0.9rem;
-      font-size: 0.82rem;
-      color: #6666aa;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #555577;
+      font-family: inherit;
     }
-    .cb-send-btn {
-      width: 32px;
-      height: 32px;
+    .cb-send {
+      width: 32px; height: 32px;
       border-radius: 8px;
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: 13px;
+      color: #fff;
       flex-shrink: 0;
     }
 
-    /* SECTIONS */
-    .cb-section { padding: 72px 0; border-top: 1px solid rgba(255,255,255,0.07); }
+    /* ── SECTIONS ── */
+    .cb-section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.07); }
+
     .cb-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.7rem;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 1rem;
+      color: #67e8f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
     }
     .cb-label::before {
       content: '';
       display: inline-block;
-      width: 18px;
-      height: 2px;
-      background: var(--accent2);
+      width: 18px; height: 2px;
+      background: #67e8f9;
       border-radius: 2px;
     }
-    .cb-title {
-      font-family: var(--font-main);
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+
+    .cb-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 800;
-      line-height: 1.15;
       letter-spacing: -0.025em;
-      margin-bottom: 1rem;
+      color: #eeeef8;
+      margin: 0 0 10px;
     }
-    .cb-sub {
-      color: var(--text-muted);
-      font-size: 1rem;
+    .cb-desc {
+      font-size: 15px;
+      color: #9494b8;
       line-height: 1.75;
-      max-width: 540px;
-      margin-bottom: 2.5rem;
+      margin: 0 0 32px;
     }
 
-    /* CAPABILITIES */
-    .cb-caps-grid {
+    /* Caps grid */
+    .cb-caps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
+    @media (max-width: 560px) { .cb-caps { grid-template-columns: 1fr; } }
     .cb-cap {
       background: #111124;
       border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 1.6rem;
-      transition: border-color 0.25s;
+      border-radius: 14px;
+      padding: 20px;
+      transition: border-color 0.2s;
     }
-    .cb-cap:hover { border-color: rgba(124,58,237,0.4); }
-    .cb-cap-icon {
-      font-size: 1.6rem;
-      margin-bottom: 0.9rem;
-      display: block;
-    }
+    .cb-cap:hover { border-color: rgba(124,58,237,0.35); }
+    .cb-cap-icon { font-size: 22px; margin-bottom: 10px; display: block; }
     .cb-cap h3 {
-      font-family: var(--font-main);
-      font-size: 0.97rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
       font-weight: 700;
-      margin-bottom: 0.45rem;
       color: #eeeef8;
+      margin: 0 0 6px;
     }
-    .cb-cap p {
-      font-size: 0.87rem;
-      color: #9494b8;
-      line-height: 1.6;
-    }
+    .cb-cap p { font-size: 13px; color: #9494b8; line-height: 1.6; margin: 0; }
 
-    /* PIPELINE */
-    .cb-pipeline { display: flex; flex-direction: column; gap: 0; }
+    /* Pipeline */
+    .cb-pipe { display: flex; flex-direction: column; gap: 0; }
     .cb-step {
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 1.4rem;
-      align-items: start;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
       position: relative;
     }
-    .cb-step:not(:last-child)::before {
+    .cb-step:not(:last-child)::after {
       content: '';
       position: absolute;
-      left: 27px;
-      top: 56px;
-      bottom: -28px;
+      left: 19px;
+      top: 40px;
+      height: calc(100% + 4px);
       width: 2px;
       background: rgba(255,255,255,0.07);
     }
-    .cb-step + .cb-step { margin-top: 2rem; }
-    .cb-step-num {
-      width: 56px;
-      height: 56px;
+    .cb-step + .cb-step { margin-top: 28px; }
+    .cb-num {
+      width: 40px; height: 40px;
       border-radius: 50%;
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-main);
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: #fff;
-      flex-shrink: 0;
-      box-shadow: 0 4px 16px rgba(124,58,237,0.3);
-    }
-    .cb-step-body { padding-top: 0.8rem; }
-    .cb-step-body h4 {
-      font-family: var(--font-main);
-      font-weight: 700;
-      font-size: 1rem;
-      color: #eeeef8;
-      margin-bottom: 0.35rem;
-    }
-    .cb-step-body p { font-size: 0.88rem; color: #9494b8; line-height: 1.65; }
-
-    /* USE CASE */
-    .cb-usecase {
-      background: #111124;
-      border: 1px solid rgba(124,58,237,0.25);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-    .cb-usecase-header {
-      background: #181830;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      padding: 1.4rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .cb-usecase-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800; font-size: 15px; color: #fff;
       flex-shrink: 0;
     }
-    .cb-usecase-title {
-      font-family: var(--font-main);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #eeeef8;
+    .cb-step-text { padding-top: 6px; }
+    .cb-step-text h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 700;
+      color: #eeeef8; margin: 0 0 4px;
     }
-    .cb-usecase-tag {
-      margin-left: auto;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #f59e0b;
-      background: rgba(245,158,11,0.1);
-      border: 1px solid rgba(245,158,11,0.25);
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-    }
-    .cb-usecase-body { padding: 2rem; }
-    .cb-usecase-desc {
-      font-size: 0.92rem;
-      color: #9494b8;
-      line-height: 1.7;
-      margin-bottom: 1.6rem;
-      max-width: 600px;
-    }
-    .cb-qa { display: flex; flex-direction: column; gap: 0.8rem; }
-    .cb-qa-row {
-      border-radius: 12px;
-      padding: 1rem 1.2rem;
-      font-size: 0.88rem;
-    }
-    .cb-qa-user {
-      background: rgba(124,58,237,0.08);
-      border: 1px solid rgba(124,58,237,0.2);
-      align-self: flex-end;
-    }
-    .cb-qa-bot {
-      background: rgba(6,182,212,0.06);
-      border: 1px solid rgba(6,182,212,0.18);
-    }
-    .cb-qa-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.35rem;
-    }
-    .cb-qa-user .cb-qa-label { color: #a78bfa; }
-    .cb-qa-bot .cb-qa-label { color: #67e8f9; }
-    .cb-qa-row p { color: #eeeef8; margin: 0; line-height: 1.6; }
+    .cb-step-text p { font-size: 13px; color: #9494b8; line-height: 1.65; margin: 0; }
 
-    /* STACK */
-    .cb-stack-grid {
+    /* Stack */
+    .cb-stack {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
-    .cb-stack-item {
+    @media (max-width: 480px) { .cb-stack { grid-template-columns: 1fr 1fr; } }
+    .cb-stack-card {
       background: #111124;
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 12px;
-      padding: 1.2rem 1.4rem;
+      padding: 16px;
     }
-    .cb-stack-layer {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #9494b8;
-      margin-bottom: 0.35rem;
-    }
-    .cb-stack-name {
-      font-family: var(--font-main);
-      font-weight: 700;
-      font-size: 0.97rem;
-      color: #eeeef8;
-    }
+    .cb-stack-layer { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9494b8; margin-bottom: 4px; }
+    .cb-stack-name { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: #eeeef8; }
 
-    /* CTA BOTTOM */
-    .cb-cta {
-      padding: 72px 0;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      text-align: center;
-    }
+    /* CTA */
+    .cb-cta { padding: 64px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.07); }
     .cb-cta h2 {
-      font-family: var(--font-main);
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      margin-bottom: 0.9rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800; color: #eeeef8; margin: 0 0 12px;
     }
-    .cb-cta p {
-      color: #9494b8;
-      max-width: 440px;
-      margin: 0 auto 2rem;
-      font-size: 1rem;
-      line-height: 1.75;
-    }
-    .cb-cta-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .cb-cta p { font-size: 15px; color: #9494b8; line-height: 1.75; margin: 0 auto 28px; max-width: 400px; }
+    .cb-cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 
-    /* FOOTER */
-    .cb-footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      color: #9494b8;
-      font-size: 0.82rem;
-    }
+    .cb-footer { text-align: center; padding: 24px; border-top: 1px solid rgba(255,255,255,0.07); color: #9494b8; font-size: 13px; }
+
+    .cb-gradient { background: linear-gradient(135deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="/" class="nav-logo" style="text-decoration:none;">AT</a>
     <ul class="nav-links">
@@ -479,219 +337,158 @@
     <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="nav-cta" style="text-decoration:none;">Request Demo</a>
   </nav>
 
-  <div class="cb-page">
+  <div class="cb-wrap">
 
     <!-- HERO -->
-    <section class="container">
-      <div class="cb-hero">
-
-        <!-- LEFT: Copy -->
-        <div>
-          <a href="/" class="cb-back">&#8592; Back to Portfolio</a>
-          <div class="cb-badge">Project Breakdown</div>
-          <h1 class="cb-hero-title">
-            Business Chatbot<br/>
-            <span class="gradient-text">Powered by RAG</span>
-          </h1>
-          <p class="cb-hero-sub">
-            An AI chatbot that ingests your company data, understands it, and answers customer questions accurately. Built on Claude API with a full Retrieval-Augmented Generation pipeline.
-          </p>
-          <div class="cb-pills">
-            <span class="cb-pill">Claude API</span>
-            <span class="cb-pill">RAG Pipeline</span>
-            <span class="cb-pill">Vector Embeddings</span>
-            <span class="cb-pill">JavaScript</span>
-            <span class="cb-pill">Node.js</span>
-          </div>
-          <div class="cb-btns">
-            <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="cb-btn-primary">Request a Demo &#8599;</a>
-            <a href="/" class="cb-btn-ghost">All Projects</a>
-          </div>
-        </div>
-
-        <!-- RIGHT: Chat Mockup -->
-        <div class="cb-chat-mockup">
-          <div class="cb-chat-header">
-            <div class="cb-chat-avatar">&#129302;</div>
-            <div>
-              <div class="cb-chat-name">Proton X50 Assistant</div>
-              <div class="cb-chat-status">Online</div>
-            </div>
-          </div>
-          <div class="cb-chat-body">
-            <div class="cb-msg cb-msg-user">What safety features does the X50 have?</div>
-            <div class="cb-msg cb-msg-bot">The X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control, Hill Hold Assist, and a 360-degree camera. The Flagship adds AEB and Lane Keep Assist.</div>
-            <div class="cb-msg cb-msg-user">Which variant has the panoramic roof?</div>
-            <div class="cb-msg cb-msg-bot">The panoramic sunroof is on the Premium and Flagship variants. Premium gives you the sunroof at a lower price point if that is your priority.</div>
-          </div>
-          <div class="cb-chat-input">
-            <div class="cb-input-fake">Ask about the X50...</div>
-            <div class="cb-send-btn">&#10148;</div>
-          </div>
-        </div>
-
+    <div class="cb-hero">
+      <a href="/" class="cb-back">&#8592; Back to Portfolio</a>
+      <div class="cb-badge">Project Breakdown</div>
+      <h1>Business Chatbot<br/><span class="cb-gradient">Powered by RAG</span></h1>
+      <p>An AI chatbot that ingests your company data and answers customer questions accurately. Built on Claude API with a full Retrieval-Augmented Generation pipeline. Embeds on any website.</p>
+      <div class="cb-pills">
+        <span class="cb-pill">Claude API</span>
+        <span class="cb-pill">RAG Pipeline</span>
+        <span class="cb-pill">Vector Embeddings</span>
+        <span class="cb-pill">JavaScript</span>
+        <span class="cb-pill">Node.js</span>
       </div>
-    </section>
+      <div class="cb-btns">
+        <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="cb-btn-p">Request a Demo &#8599;</a>
+        <a href="/" class="cb-btn-g">All Projects</a>
+      </div>
+    </div>
+
+    <!-- CHAT DEMO -->
+    <div class="cb-chat">
+      <div class="cb-chat-bar">
+        <div class="cb-chat-dot"></div>
+        <div>
+          <div class="cb-chat-bar-name">Proton X50 Assistant</div>
+          <div class="cb-chat-bar-sub">&#9679; Online</div>
+        </div>
+      </div>
+      <div class="cb-chat-msgs">
+        <div class="cb-user-msg">What safety features does the X50 have?</div>
+        <div class="cb-bot-msg">The X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control, Hill Hold Assist, and a 360-degree camera. The Flagship adds Autonomous Emergency Braking and Lane Keep Assist as standard.</div>
+        <div class="cb-user-msg">Which variant has the panoramic roof?</div>
+        <div class="cb-bot-msg">The panoramic sunroof is on the Premium and Flagship variants. Premium gives you the sunroof at a lower price point if that is your main priority.</div>
+      </div>
+      <div class="cb-chat-input-row">
+        <div class="cb-fake-input">Ask about the X50...</div>
+        <div class="cb-send">&#10148;</div>
+      </div>
+    </div>
 
     <!-- CAPABILITIES -->
-    <section class="cb-section">
-      <div class="container">
-        <div class="cb-label">Capabilities</div>
-        <h2 class="cb-title">What it <span class="gradient-text">does</span></h2>
-        <p class="cb-sub">A chatbot that actually knows your business, not a generic bot pulling from a FAQ page.</p>
-        <div class="cb-caps-grid">
-          <div class="cb-cap">
-            <span class="cb-cap-icon">&#128196;</span>
-            <h3>Ingests Your Data</h3>
-            <p>Feed it product specs, service manuals, pricing sheets, or any documents. It learns your content, not generic training data.</p>
-          </div>
-          <div class="cb-cap">
-            <span class="cb-cap-icon">&#127919;</span>
-            <h3>Answers Accurately</h3>
-            <p>RAG retrieves the exact relevant chunks before generating a response. Answers grounded in your actual content, no hallucinations.</p>
-          </div>
-          <div class="cb-cap">
-            <span class="cb-cap-icon">&#128172;</span>
-            <h3>Remembers Context</h3>
-            <p>Maintains conversation history within a session. Users ask follow-ups naturally without repeating themselves.</p>
-          </div>
-          <div class="cb-cap">
-            <span class="cb-cap-icon">&#128268;</span>
-            <h3>Embeds Anywhere</h3>
-            <p>Drops into any website as a chat widget via a single script tag. No rebuild, no platform dependency.</p>
-          </div>
+    <div class="cb-section">
+      <div class="cb-label">Capabilities</div>
+      <h2 class="cb-h2">What it <span class="cb-gradient">does</span></h2>
+      <p class="cb-desc">A chatbot that actually knows your business, not a generic bot pulling from a FAQ page.</p>
+      <div class="cb-caps">
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128196;</span>
+          <h3>Ingests Your Data</h3>
+          <p>Feed it product specs, manuals, or FAQs. It learns your content, not generic training data.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#127919;</span>
+          <h3>Answers Accurately</h3>
+          <p>RAG retrieves the exact relevant content before generating a response. No hallucinations.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128172;</span>
+          <h3>Remembers Context</h3>
+          <p>Maintains conversation history so users can ask follow-ups naturally without repeating themselves.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128268;</span>
+          <h3>Embeds Anywhere</h3>
+          <p>Drops into any website as a widget via a single script tag. No rebuild required.</p>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- HOW IT WORKS -->
-    <section class="cb-section">
-      <div class="container">
-        <div class="cb-label">Architecture</div>
-        <h2 class="cb-title">How it <span class="gradient-text">works</span></h2>
-        <p class="cb-sub">A clean RAG pipeline from document ingestion to accurate AI response in four steps.</p>
-        <div class="cb-pipeline">
-          <div class="cb-step">
-            <div class="cb-step-num">1</div>
-            <div class="cb-step-body">
-              <h4>Document Ingestion</h4>
-              <p>Your content (PDFs, HTML, product specs, FAQs) is parsed and split into semantic chunks optimised for retrieval.</p>
-            </div>
+    <div class="cb-section">
+      <div class="cb-label">Architecture</div>
+      <h2 class="cb-h2">How it <span class="cb-gradient">works</span></h2>
+      <p class="cb-desc">A clean RAG pipeline from document ingestion to accurate AI response in four steps.</p>
+      <div class="cb-pipe">
+        <div class="cb-step">
+          <div class="cb-num">1</div>
+          <div class="cb-step-text">
+            <h4>Document Ingestion</h4>
+            <p>Your content is parsed and split into semantic chunks optimised for retrieval.</p>
           </div>
-          <div class="cb-step">
-            <div class="cb-step-num">2</div>
-            <div class="cb-step-body">
-              <h4>Vector Embedding</h4>
-              <p>Each chunk is converted into a vector embedding and stored. This powers semantic search based on meaning, not keywords.</p>
-            </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">2</div>
+          <div class="cb-step-text">
+            <h4>Vector Embedding</h4>
+            <p>Each chunk is converted into a vector and stored. This powers semantic search based on meaning, not keywords.</p>
           </div>
-          <div class="cb-step">
-            <div class="cb-step-num">3</div>
-            <div class="cb-step-body">
-              <h4>Retrieval</h4>
-              <p>When a user asks a question, the pipeline finds the most relevant chunks from your data using similarity search.</p>
-            </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">3</div>
+          <div class="cb-step-text">
+            <h4>Retrieval</h4>
+            <p>When a user asks a question, the pipeline finds the most relevant chunks using similarity search.</p>
           </div>
-          <div class="cb-step">
-            <div class="cb-step-num">4</div>
-            <div class="cb-step-body">
-              <h4>Generation via Claude API</h4>
-              <p>The retrieved context is passed to Claude alongside the user's question. Claude generates a grounded, accurate response every time.</p>
-            </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">4</div>
+          <div class="cb-step-text">
+            <h4>Generation via Claude API</h4>
+            <p>The retrieved context is passed to Claude alongside the question. It generates a grounded, accurate response every time.</p>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- USE CASE -->
-    <section class="cb-section">
-      <div class="container">
-        <div class="cb-label">Use Case</div>
-        <h2 class="cb-title">Demo: <span class="gradient-text">Proton X50</span></h2>
-        <p class="cb-sub">Trained on the full Proton X50 vehicle specification. Customers get accurate answers instantly.</p>
-        <div class="cb-usecase">
-          <div class="cb-usecase-header">
-            <div class="cb-usecase-dot"></div>
-            <div class="cb-usecase-title">Proton X50 Spec Assistant</div>
-            <div class="cb-usecase-tag">Automotive</div>
-          </div>
-          <div class="cb-usecase-body">
-            <p class="cb-usecase-desc">
-              A dealership chatbot trained on the complete X50 product page including all variants, features, safety specs, and pricing structure. Customers get instant, accurate answers without calling a salesperson.
-            </p>
-            <div class="cb-qa">
-              <div class="cb-qa-row cb-qa-user">
-                <div class="cb-qa-label">Customer</div>
-                <p>What safety features does the Proton X50 have?</p>
-              </div>
-              <div class="cb-qa-row cb-qa-bot">
-                <div class="cb-qa-label">AI Assistant</div>
-                <p>The Proton X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control, Hill Hold Assist, and a 360-degree camera on the Premium variant. The Flagship adds Autonomous Emergency Braking and Lane Keep Assist as standard.</p>
-              </div>
-              <div class="cb-qa-row cb-qa-user">
-                <div class="cb-qa-label">Customer</div>
-                <p>Which variant should I get if I want the panoramic roof?</p>
-              </div>
-              <div class="cb-qa-row cb-qa-bot">
-                <div class="cb-qa-label">AI Assistant</div>
-                <p>The panoramic sunroof is available on the Premium and Flagship variants. If that is your priority, the Premium variant gives you the sunroof alongside most comfort features at a lower price point than the Flagship.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <!-- TECH STACK -->
-    <section class="cb-section">
-      <div class="container">
-        <div class="cb-label">Tech Stack</div>
-        <h2 class="cb-title">Built <span class="gradient-text">with</span></h2>
-        <p class="cb-sub">Chosen for accuracy, speed, and ease of integration into any existing website.</p>
-        <div class="cb-stack-grid">
-          <div class="cb-stack-item">
-            <div class="cb-stack-layer">AI Model</div>
-            <div class="cb-stack-name">Claude API</div>
-          </div>
-          <div class="cb-stack-item">
-            <div class="cb-stack-layer">Retrieval</div>
-            <div class="cb-stack-name">RAG Pipeline</div>
-          </div>
-          <div class="cb-stack-item">
-            <div class="cb-stack-layer">Search</div>
-            <div class="cb-stack-name">Vector Embeddings</div>
-          </div>
-          <div class="cb-stack-item">
-            <div class="cb-stack-layer">Backend</div>
-            <div class="cb-stack-name">Node.js</div>
-          </div>
-          <div class="cb-stack-item">
-            <div class="cb-stack-layer">Widget</div>
-            <div class="cb-stack-name">JavaScript</div>
-          </div>
-          <div class="cb-stack-item">
-            <div class="cb-stack-layer">Deployment</div>
-            <div class="cb-stack-name">Embeddable</div>
-          </div>
+    <div class="cb-section">
+      <div class="cb-label">Tech Stack</div>
+      <h2 class="cb-h2">Built <span class="cb-gradient">with</span></h2>
+      <p class="cb-desc">Chosen for accuracy, speed, and ease of integration into any existing website.</p>
+      <div class="cb-stack">
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">AI Model</div>
+          <div class="cb-stack-name">Claude API</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Retrieval</div>
+          <div class="cb-stack-name">RAG Pipeline</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Search</div>
+          <div class="cb-stack-name">Vector Embeddings</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Backend</div>
+          <div class="cb-stack-name">Node.js</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Widget</div>
+          <div class="cb-stack-name">JavaScript</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Deployment</div>
+          <div class="cb-stack-name">Embeddable</div>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- CTA -->
-    <section class="cb-cta">
-      <div class="container">
-        <h2>Want this for <span class="gradient-text">your business?</span></h2>
-        <p>I can build a chatbot trained on your data and embed it on your site within days.</p>
-        <div class="cb-cta-row">
-          <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="cb-btn-primary">Get In Touch &#8599;</a>
-          <a href="/" class="cb-btn-ghost">View All Projects</a>
-        </div>
+    <div class="cb-cta">
+      <h2>Want this for <span class="cb-gradient">your business?</span></h2>
+      <p>I can build a chatbot trained on your data and embed it on your site within days.</p>
+      <div class="cb-cta-btns">
+        <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="cb-btn-p">Get In Touch &#8599;</a>
+        <a href="/" class="cb-btn-g">View All Projects</a>
       </div>
-    </section>
+    </div>
 
-    <footer class="cb-footer">
-      &copy; 2026 Ahnaf Thaqeef. All rights reserved.
-    </footer>
+    <div class="cb-footer">&copy; 2026 Ahnaf Thaqeef. All rights reserved.</div>
 
   </div>
 
