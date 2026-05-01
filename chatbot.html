@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Chatbot — RAG | Ahnaf Thaqeef</title>
+  <meta name="description" content="AI chatbot built on Claude and a full RAG pipeline. Trained on company data, embeddable on any website." />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- PAGE-SPECIFIC ---- */
+    .project-hero {
+      padding: 140px 0 80px;
+      text-align: center;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent2); }
+    .project-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.35);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent1-light);
+      margin-bottom: 1.5rem;
+    }
+    .project-hero h1 {
+      font-family: var(--font-main);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+    }
+    .project-hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .tech-pill {
+      padding: 0.35rem 0.9rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--gradient);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--border-accent);
+      color: var(--accent1-light);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: rgba(124,58,237,0.1); }
+
+    /* ---- DIVIDER ---- */
+    .section { padding: 80px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+
+    /* ---- WHAT IT DOES ---- */
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .cap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      transition: border-color 0.2s;
+    }
+    .cap-card:hover { border-color: var(--border-accent); }
+    .cap-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .cap-card h3 {
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .cap-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ---- HOW IT WORKS (pipeline) ---- */
+    .pipeline {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .pipeline-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-main);
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .step-body h4 {
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .step-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .pipeline-connector {
+      width: 2px;
+      height: 24px;
+      background: var(--border);
+      margin-left: 23px;
+      border-radius: 2px;
+    }
+
+    /* ---- USE CASE ---- */
+    .usecase-box {
+      background: var(--surface);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-top: 2.5rem;
+    }
+    .usecase-box .uc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      margin-bottom: 0.8rem;
+    }
+    .usecase-box h3 {
+      font-family: var(--font-main);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .usecase-box p {
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .uc-qa {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .qa-row {
+      background: var(--bg2);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+    .qa-row.user-msg { border-left: 3px solid var(--accent1); }
+    .qa-row.bot-msg { border-left: 3px solid var(--accent2); }
+    .qa-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .qa-row.user-msg .qa-label { color: var(--accent1-light); }
+    .qa-row.bot-msg .qa-label { color: var(--accent2-light); }
+    .qa-row p { color: var(--text); margin: 0; line-height: 1.6; }
+
+    /* ---- STACK ---- */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .stack-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .stack-item span:first-child {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .stack-item span:last-child {
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    /* ---- CTA SECTION ---- */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-family: var(--font-main);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AT</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#blog">Content</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:ahnafthaqeef@gmail.com" class="nav-cta">Request Demo</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="project-hero container">
+    <a href="/" class="back-link">&#8592; Back to Portfolio</a>
+    <div class="project-badge">Project Showcase</div>
+    <h1>Business Chatbot<br/><span class="gradient-text">Powered by RAG</span></h1>
+    <p>An AI chatbot that ingests your company data, understands it, and answers customer questions accurately. Built on Claude API with a full Retrieval-Augmented Generation pipeline. Embeds as a widget on any website.</p>
+    <div class="tech-pills">
+      <span class="tech-pill">Claude API</span>
+      <span class="tech-pill">RAG Pipeline</span>
+      <span class="tech-pill">Vector Embeddings</span>
+      <span class="tech-pill">JavaScript</span>
+      <span class="tech-pill">Node.js</span>
+    </div>
+    <div class="cta-row">
+      <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="btn-primary">Request a Demo</a>
+      <a href="/#projects" class="btn-outline">See All Projects</a>
+    </div>
+  </section>
+
+  <!-- WHAT IT DOES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">What it <span class="gradient-text">does</span></h2>
+      <p class="section-sub">A chatbot that actually knows your business -- not a generic bot copy-pasting from a FAQ page.</p>
+      <div class="capabilities-grid">
+        <div class="cap-card">
+          <div class="cap-icon">📄</div>
+          <h3>Ingests Your Data</h3>
+          <p>Feed it product specs, service manuals, pricing sheets, or any documents. It learns your content, not generic training data.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">🎯</div>
+          <h3>Answers Accurately</h3>
+          <p>RAG retrieves the exact relevant chunks before generating a response. No hallucination, no guesswork -- answers grounded in your actual content.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">💬</div>
+          <h3>Remembers Context</h3>
+          <p>Maintains conversation history within a session. Users can ask follow-up questions naturally without repeating themselves.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">🔌</div>
+          <h3>Embeds Anywhere</h3>
+          <p>Drops into any website as a chat widget. One script tag -- no rebuild required, no platform dependency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-title">How it <span class="gradient-text">works</span></h2>
+      <p class="section-sub">A clean RAG pipeline -- document ingestion to accurate AI response in four steps.</p>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Document Ingestion</h4>
+            <p>Your content (PDFs, HTML, text, product specs) is parsed and split into semantic chunks optimised for retrieval.</p>
+          </div>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Vector Embedding</h4>
+            <p>Each chunk is converted into a vector embedding and stored in a vector database. This powers semantic search -- meaning-based, not keyword-based.</p>
+          </div>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Retrieval</h4>
+            <p>When a user asks a question, the pipeline finds the most relevant chunks from your data using similarity search.</p>
+          </div>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Generation via Claude API</h4>
+            <p>The retrieved context is passed to Claude alongside the user's question. Claude generates a grounded, accurate response -- never hallucinating beyond what your data contains.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Use Case</div>
+      <h2 class="section-title">Demo: <span class="gradient-text">Proton X50</span></h2>
+      <p class="section-sub">The chatbot was trained on the full Proton X50 vehicle specification -- features, variants, tech, pricing structure. Here is how it responds.</p>
+      <div class="usecase-box">
+        <div class="uc-label">Live Demo Conversation</div>
+        <h3>Proton X50 Spec Assistant</h3>
+        <p>A car dealership chatbot trained on the complete X50 product page. Customers get accurate answers instantly -- without calling a salesperson.</p>
+        <div class="uc-qa">
+          <div class="qa-row user-msg">
+            <div class="qa-label">Customer</div>
+            <p>What safety features does the Proton X50 have?</p>
+          </div>
+          <div class="qa-row bot-msg">
+            <div class="qa-label">AI Assistant</div>
+            <p>The Proton X50 comes with 6 airbags, ABS with EBD, Electronic Stability Control (ESC), Hill Hold Assist, and a 360-degree camera on the Premium variant. The Flagship variant adds Autonomous Emergency Braking (AEB) and Lane Keep Assist (LKA) as standard.</p>
+          </div>
+          <div class="qa-row user-msg">
+            <div class="qa-label">Customer</div>
+            <p>Which variant should I get if I want the panoramic roof?</p>
+          </div>
+          <div class="qa-row bot-msg">
+            <div class="qa-label">AI Assistant</div>
+            <p>The panoramic sunroof is available on the Premium and Flagship variants. If that is your priority, the Premium variant gives you the sunroof alongside most comfort features at a lower price point than the Flagship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Built <span class="gradient-text">with</span></h2>
+      <p class="section-sub">Chosen for accuracy, speed, and ease of integration into any existing website.</p>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <span>AI Model</span>
+          <span>Claude API</span>
+        </div>
+        <div class="stack-item">
+          <span>Retrieval</span>
+          <span>RAG Pipeline</span>
+        </div>
+        <div class="stack-item">
+          <span>Search</span>
+          <span>Vector Embeddings</span>
+        </div>
+        <div class="stack-item">
+          <span>Backend</span>
+          <span>Node.js</span>
+        </div>
+        <div class="stack-item">
+          <span>Widget</span>
+          <span>JavaScript</span>
+        </div>
+        <div class="stack-item">
+          <span>Deployment</span>
+          <span>Embeddable</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Want this for <span class="gradient-text">your business?</span></h2>
+      <p>I can build a chatbot trained on your data -- products, services, FAQs -- and embed it on your site within days.</p>
+      <div class="cta-row">
+        <a href="mailto:ahnafthaqeef@gmail.com?subject=Chatbot Demo Request" class="btn-primary">Get In Touch</a>
+        <a href="/" class="btn-outline">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="text-align:center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem;">
+    &copy; 2026 Ahnaf Thaqeef. All rights reserved.
+  </footer>
+
+  <script>
+    // Navbar scroll effect (reuse from main site)
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>
