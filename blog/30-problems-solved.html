@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>30 Problems Solved with AI in 30 Days — Ahnaf Thaqeef</title>
+  <meta name="description" content="A challenge log documenting real business problems tackled with AI tools — one per day, with what worked and what didn't." />
+  <meta name="og:title" content="30 Problems Solved with AI in 30 Days — Ahnaf Thaqeef" />
+  <meta name="og:url" content="https://aibizmy.com/blog/30-problems-solved.html" />
+  <link rel="stylesheet" href="../css/style.css?v=2" />
+  <link rel="stylesheet" href="../css/blog.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AT</a>
+    <ul class="nav-links">
+      <li><a href="/#about" data-i18n="nav-about">About</a></li>
+      <li><a href="/#projects" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="/#blog" data-i18n="nav-content">Content</a></li>
+      <li><a href="/#contact" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="my">BM</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+    <a href="https://resume.aibizmy.com" target="_blank" rel="noopener" class="nav-app-btn">Launch App ↗</a>
+    <button class="nav-cta" onclick="window.location.href='/#contact'" data-i18n="nav-cta">Let's Talk</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu">&#10005;</button>
+    <ul>
+      <li><a href="/#about" class="mob-link" data-i18n="nav-about">About</a></li>
+      <li><a href="/#projects" class="mob-link" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="/#blog" class="mob-link" data-i18n="nav-content">Content</a></li>
+      <li><a href="/#contact" class="mob-link" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher-mob">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="my">BM</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+
+  <!-- ARTICLE -->
+  <div class="article-wrap">
+    <div class="article-container">
+
+      <a href="/" class="article-back" data-i18n="back-link">← Back to Home</a>
+
+      <div class="article-hero">
+        <div class="article-tag" data-i18n="article-tag">AI STRATEGY</div>
+        <h1 class="article-title" data-i18n="article-title">30 Problems Solved with AI in 30 Days</h1>
+        <div class="article-meta">
+          <span data-i18n="meta-date">May 2025</span>
+          <span class="article-meta-dot"></span>
+          <span data-i18n="meta-read">8 min read</span>
+          <span class="article-meta-dot"></span>
+          <span>Ahnaf Thaqeef</span>
+        </div>
+      </div>
+
+      <div class="article-section" data-i18n-html="s1">
+        <h2>What Was the Challenge?</h2>
+        <p>In early 2025, I set myself a personal challenge: build one AI tool per day for 30 consecutive days, each one solving a real, documented business problem. Not demos. Not tutorials. Real tools that could be handed to a business owner and used the next morning.</p>
+        <p>The rules were simple. Each tool had to: <strong>solve a specific problem</strong>, be built within a single day, and be documented — what I built, what worked, and what didn't. No exceptions, no extensions.</p>
+      </div>
+
+      <div class="article-section" data-i18n-html="s2">
+        <h2>Why 30 Days?</h2>
+        <p>Speed forces clarity. When you have eight hours to go from problem to working prototype, you can't afford to over-engineer. You cut straight to the core loop — the one thing the user needs to do — and you build that first.</p>
+        <p>I also wanted to test my own stack. After years of reading about AI, building proofs-of-concept, and attending workshops, I needed to answer one honest question: <strong>how fast can I actually ship?</strong></p>
+        <p>The answer, after 30 days: faster than I expected, but the quality gap between day 3 and day 18 was significant. And that gap was the most interesting part.</p>
+      </div>
+
+      <div class="article-section" data-i18n-html="s3">
+        <h2>Five Builds That Actually Worked</h2>
+        <p><strong>AI Resume Builder</strong> — The clearest win. A user uploads their CV, pastes a job description, and gets an ATS-ready resume in seconds. What made it work: the problem was sharply defined, the feedback loop was instant, and the output had a clear quality bar (ATS score). It's now live at resume.aibizmy.com.</p>
+        <p><strong>Voice Agent for Business</strong> — Built on Retell AI, this handled inbound business calls with natural conversation flow. Booking appointments, answering FAQs, escalating to humans. A Malaysian SMB owner told me it handled 60% of their inbound calls within two weeks of going live.</p>
+        <p><strong>AI Proposal Generator</strong> — Paste your client brief, get a structured, professional proposal out the other end. What surprised me: the formatting mattered more than the content quality. Businesses wanted something that looked right immediately.</p>
+        <p><strong>Logistics Analytics Dashboard</strong> — Built for a supply chain context, this pulled delivery data and surfaced delay patterns using AI-generated summaries. The insight layer was where AI added real value — not the charts themselves.</p>
+        <p><strong>Content Carousel Generator</strong> — Generates social media carousel slides from a single topic input. The tool taught me that AI content tools live or die by how tightly you constrain the output format.</p>
+      </div>
+
+      <div class="article-section" data-i18n-html="s4">
+        <h2>What Broke (The Honest Part)</h2>
+        <p>Day 9 was a lesson in scope creep. I tried to build a multilingual voice agent that could switch between Bahasa Malaysia and English mid-conversation. The STT (speech-to-text) layer handled it poorly. I shipped a half-built tool, documented the failure, and moved on.</p>
+        <p>Days 11 through 14 were rough. I hit what I now call the <strong>"AI for everything" trap</strong> — reaching for an LLM to solve problems that a simple rule or a lookup table would have solved better and faster. The tools from that stretch were technically fine but practically weak.</p>
+        <p>Mobile OCR was another failure. Building a halal scanner that reads product labels from a phone camera sounds straightforward. The image quality variability across devices made it genuinely hard. I shipped a version that worked 70% of the time — which is not enough for food safety.</p>
+      </div>
+
+      <div class="article-section" data-i18n-html="s5">
+        <h2>What I Learned</h2>
+        <p><strong>Constraints produce better products.</strong> The best tools came from the narrowest problem definitions. "Build an AI tool for HR" produced nothing useful. "Build a tool that writes a job description from a bullet list" produced something a business could use on day one.</p>
+        <p><strong>Document everything in real time.</strong> The notes I took while building day 7 were the foundation of a workflow I used on day 19. Your future self will thank you for writing it down while it's fresh.</p>
+        <p><strong>The output format is the product.</strong> Users don't care how clever your prompt is. They care about what lands in their inbox or on their screen. A mediocre AI output in a great format beats a great AI output in a confusing format, every time.</p>
+        <p><strong>Ship first, harden later.</strong> Every tool I tried to make "production-ready" on day one ended up delayed or not shipped at all. The tools I shipped rough, documented the limitations, and improved later consistently performed better in practice.</p>
+      </div>
+
+      <div class="article-section" data-i18n-html="s6">
+        <h2>The Verdict</h2>
+        <p>30 tools in 30 days is exhausting. There were nights where I was committing code at 11pm, writing documentation at midnight, and questioning my life choices by 1am. I'd do it again.</p>
+        <p>The value wasn't in the 30 tools. It was in the compounding effect of having shipped that many times. By day 25, I had a personal library of patterns, failed approaches, and tested solutions that made every subsequent build faster and better.</p>
+        <p>If you're learning AI development, I'd recommend a version of this challenge — even at 7 days. The constraint is the point. Speed reveals your actual skill level. And the gap between what you thought you could build and what you actually build is where the real learning happens.</p>
+      </div>
+
+      <hr class="article-divider" />
+
+      <div class="article-cta-box">
+        <h3 data-i18n="cta-title">Thinking about an AI project for your business?</h3>
+        <p data-i18n="cta-body">I've spent 30+ days building AI tools for real business problems. If you have something in mind, I'd like to hear about it.</p>
+        <a href="/#contact" class="btn-primary" data-i18n="cta-btn">Let's Talk</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">Ahnaf Thaqeef</div>
+          <p class="footer-sub">Building AI for Business</p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/muhamad-ahnaf-thaqeef-949ab014a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="mailto:hello@aibizmy.com" aria-label="Email">✉</a>
+            <a href="https://aibizmy.com" target="_blank" rel="noopener" aria-label="Portfolio">⬡</a>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div class="footer-nav-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#blog">Content</a></li>
+              <li><a href="/#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <h4>Live Apps</h4>
+            <ul>
+              <li><a href="https://resume.aibizmy.com" target="_blank" rel="noopener">Resume Builder</a></li>
+              <li><a href="https://habits.aibizmy.com" target="_blank" rel="noopener">Habit Tracker</a></li>
+              <li><a href="https://events.aibizmy.com" target="_blank" rel="noopener">AcaraHQ</a></li>
+              <li><a href="https://finai.aibizmy.com" target="_blank" rel="noopener">FinAI Intel</a></li>
+              <li><a href="https://cx.aibizmy.com" target="_blank" rel="noopener">CX Intelligence Suite</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Ahnaf Thaqeef. All rights reserved.</p>
+        <p class="footer-made">Made in <span>🇲🇾 Malaysia</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        'nav-about': 'About', 'nav-projects': 'Projects', 'nav-content': 'Content',
+        'nav-contact': 'Contact', 'nav-cta': "Let's Talk",
+        'back-link': '← Back to Home',
+        'article-tag': 'AI STRATEGY',
+        'article-title': '30 Problems Solved with AI in 30 Days',
+        'meta-date': 'May 2025',
+        'meta-read': '8 min read',
+        's1': '<h2>What Was the Challenge?</h2><p>In early 2025, I set myself a personal challenge: build one AI tool per day for 30 consecutive days, each one solving a real, documented business problem. Not demos. Not tutorials. Real tools that could be handed to a business owner and used the next morning.</p><p>The rules were simple. Each tool had to: <strong>solve a specific problem</strong>, be built within a single day, and be documented — what I built, what worked, and what didn\'t. No exceptions, no extensions.</p>',
+        's2': '<h2>Why 30 Days?</h2><p>Speed forces clarity. When you have eight hours to go from problem to working prototype, you can\'t afford to over-engineer. You cut straight to the core loop — the one thing the user needs to do — and you build that first.</p><p>I also wanted to test my own stack. After years of reading about AI, building proofs-of-concept, and attending workshops, I needed to answer one honest question: <strong>how fast can I actually ship?</strong></p><p>The answer, after 30 days: faster than I expected, but the quality gap between day 3 and day 18 was significant. And that gap was the most interesting part.</p>',
+        's3': '<h2>Five Builds That Actually Worked</h2><p><strong>AI Resume Builder</strong> — The clearest win. A user uploads their CV, pastes a job description, and gets an ATS-ready resume in seconds. What made it work: the problem was sharply defined, the feedback loop was instant, and the output had a clear quality bar (ATS score). It\'s now live at resume.aibizmy.com.</p><p><strong>Voice Agent for Business</strong> — Built on Retell AI, this handled inbound business calls with natural conversation flow. Booking appointments, answering FAQs, escalating to humans. A Malaysian SMB owner told me it handled 60% of their inbound calls within two weeks of going live.</p><p><strong>AI Proposal Generator</strong> — Paste your client brief, get a structured, professional proposal out the other end. What surprised me: the formatting mattered more than the content quality. Businesses wanted something that looked right immediately.</p><p><strong>Logistics Analytics Dashboard</strong> — Built for a supply chain context, this pulled delivery data and surfaced delay patterns using AI-generated summaries. The insight layer was where AI added real value — not the charts themselves.</p><p><strong>Content Carousel Generator</strong> — Generates social media carousel slides from a single topic input. The tool taught me that AI content tools live or die by how tightly you constrain the output format.</p>',
+        's4': '<h2>What Broke (The Honest Part)</h2><p>Day 9 was a lesson in scope creep. I tried to build a multilingual voice agent that could switch between Bahasa Malaysia and English mid-conversation. The STT (speech-to-text) layer handled it poorly. I shipped a half-built tool, documented the failure, and moved on.</p><p>Days 11 through 14 were rough. I hit what I now call the <strong>"AI for everything" trap</strong> — reaching for an LLM to solve problems that a simple rule or a lookup table would have solved better and faster. The tools from that stretch were technically fine but practically weak.</p><p>Mobile OCR was another failure. Building a halal scanner that reads product labels from a phone camera sounds straightforward. The image quality variability across devices made it genuinely hard. I shipped a version that worked 70% of the time — which is not enough for food safety.</p>',
+        's5': '<h2>What I Learned</h2><p><strong>Constraints produce better products.</strong> The best tools came from the narrowest problem definitions. "Build an AI tool for HR" produced nothing useful. "Build a tool that writes a job description from a bullet list" produced something a business could use on day one.</p><p><strong>Document everything in real time.</strong> The notes I took while building day 7 were the foundation of a workflow I used on day 19. Your future self will thank you for writing it down while it\'s fresh.</p><p><strong>The output format is the product.</strong> Users don\'t care how clever your prompt is. They care about what lands in their inbox or on their screen. A mediocre AI output in a great format beats a great AI output in a confusing format, every time.</p><p><strong>Ship first, harden later.</strong> Every tool I tried to make "production-ready" on day one ended up delayed or not shipped at all. The tools I shipped rough, documented the limitations, and improved later consistently performed better in practice.</p>',
+        's6': '<h2>The Verdict</h2><p>30 tools in 30 days is exhausting. There were nights where I was committing code at 11pm, writing documentation at midnight, and questioning my life choices by 1am. I\'d do it again.</p><p>The value wasn\'t in the 30 tools. It was in the compounding effect of having shipped that many times. By day 25, I had a personal library of patterns, failed approaches, and tested solutions that made every subsequent build faster and better.</p><p>If you\'re learning AI development, I\'d recommend a version of this challenge — even at 7 days. The constraint is the point. Speed reveals your actual skill level. And the gap between what you thought you could build and what you actually build is where the real learning happens.</p>',
+        'cta-title': 'Thinking about an AI project for your business?',
+        'cta-body': "I've spent 30+ days building AI tools for real business problems. If you have something in mind, I'd like to hear about it.",
+        'cta-btn': "Let's Talk",
+      },
+
+      my: {
+        'nav-about': 'Tentang', 'nav-projects': 'Projek', 'nav-content': 'Kandungan',
+        'nav-contact': 'Hubungi', 'nav-cta': 'Jom Bincang',
+        'back-link': '← Kembali ke Laman Utama',
+        'article-tag': 'STRATEGI AI',
+        'article-title': '30 Masalah Diselesaikan dengan AI dalam 30 Hari',
+        'meta-date': 'Mei 2025',
+        'meta-read': '8 minit bacaan',
+        's1': '<h2>Apakah Cabarannya?</h2><p>Pada awal 2025, saya menetapkan cabaran peribadi: bina satu alat AI setiap hari selama 30 hari berturut-turut, setiap satunya menyelesaikan masalah perniagaan sebenar yang didokumentasikan. Bukan demo. Bukan tutorial. Alat sebenar yang boleh diberikan kepada pemilik perniagaan dan digunakan pada keesokan harinya.</p><p>Peraturannya mudah. Setiap alat mesti: <strong>menyelesaikan masalah khusus</strong>, dibina dalam satu hari, dan didokumentasikan — apa yang saya bina, apa yang berhasil, dan apa yang tidak. Tanpa pengecualian, tanpa lanjutan masa.</p>',
+        's2': '<h2>Kenapa 30 Hari?</h2><p>Kelajuan memaksa kejelasan. Bila anda ada lapan jam untuk pergi dari masalah ke prototaip yang berfungsi, anda tidak mampu untuk mereka terlalu rumit. Anda terus ke gelung teras — satu perkara yang pengguna perlu buat — dan anda bina itu dahulu.</p><p>Saya juga mahu uji stack saya sendiri. Selepas bertahun-tahun membaca tentang AI, membina proof-of-concept, dan menghadiri bengkel, saya perlu jawab satu soalan jujur: <strong>seberapa cepat saya sebenarnya boleh hantar?</strong></p><p>Jawapannya, selepas 30 hari: lebih cepat daripada yang saya jangkakan, tetapi jurang kualiti antara hari ke-3 dan hari ke-18 adalah ketara. Dan jurang itulah bahagian yang paling menarik.</p>',
+        's3': '<h2>Lima Projek Yang Benar-benar Berhasil</h2><p><strong>Pembina Resume AI</strong> — Kemenangan yang paling jelas. Pengguna muat naik CV mereka, tampal keterangan kerja, dan dapatkan resume mesra ATS dalam beberapa saat. Apa yang membuatnya berhasil: masalah ditakrifkan dengan tepat, gelung maklum balas adalah segera, dan output mempunyai bar kualiti yang jelas (skor ATS). Kini ia ada di resume.aibizmy.com.</p><p><strong>Ejen Suara untuk Perniagaan</strong> — Dibina di atas Retell AI, ini mengendalikan panggilan masuk perniagaan dengan aliran perbualan semula jadi. Tempah temujanji, jawab soalan lazim, eskalasi kepada manusia. Seorang pemilik PKS Malaysia memberitahu saya ia mengendalikan 60% panggilan masuk mereka dalam masa dua minggu selepas dilancarkan.</p><p><strong>Penjana Cadangan AI</strong> — Tampal ringkasan klien anda, dapatkan cadangan yang berstruktur dan profesional. Yang mengejutkan saya: pemformatan lebih penting daripada kualiti kandungan. Perniagaan mahukan sesuatu yang kelihatan betul dengan segera.</p><p><strong>Papan Pemuka Analitik Logistik</strong> — Dibina untuk konteks rantaian bekalan, ini menarik data penghantaran dan menampilkan corak kelewatan menggunakan ringkasan yang dijana AI. Lapisan wawasan adalah tempat AI memberikan nilai sebenar — bukan carta itu sendiri.</p><p><strong>Penjana Karusel Kandungan</strong> — Menjana slaid karusel media sosial daripada satu input topik. Alat ini mengajar saya bahawa alat kandungan AI bergantung pada seberapa ketat anda mengehadkan format output.</p>',
+        's4': '<h2>Apa Yang Gagal (Bahagian Jujur)</h2><p>Hari ke-9 adalah pelajaran tentang scope creep. Saya cuba bina ejen suara berbilang bahasa yang boleh beralih antara Bahasa Malaysia dan Bahasa Inggeris di tengah perbualan. Lapisan STT (ucapan-ke-teks) mengendalikannya dengan buruk. Saya hantar alat yang separuh siap, dokumentasikan kegagalan, dan teruskan.</p><p>Hari ke-11 hingga ke-14 adalah sukar. Saya terjebak dalam apa yang kini saya panggil <strong>perangkap "AI untuk segalanya"</strong> — mencapai LLM untuk menyelesaikan masalah yang lebih baik dan lebih cepat diselesaikan oleh peraturan mudah atau jadual carian. Alat dari tempoh itu baik secara teknikal tetapi lemah secara praktikal.</p><p>OCR mudah alih adalah kegagalan lain. Membina pengimbas halal yang membaca label produk dari kamera telefon kedengaran mudah. Kebolehubahan kualiti imej merentasi peranti membuatnya susah. Saya menghantar versi yang berfungsi 70% daripada masa — yang tidak mencukupi untuk keselamatan makanan.</p>',
+        's5': '<h2>Apa Yang Saya Pelajari</h2><p><strong>Kekangan menghasilkan produk yang lebih baik.</strong> Alat terbaik datang dari definisi masalah yang paling sempit. "Bina alat AI untuk HR" tidak menghasilkan apa-apa yang berguna. "Bina alat yang menulis keterangan kerja dari senarai peluru" menghasilkan sesuatu yang boleh digunakan perniagaan pada hari pertama.</p><p><strong>Dokumentasikan segalanya secara masa nyata.</strong> Nota yang saya ambil semasa membina hari ke-7 adalah asas aliran kerja yang saya gunakan pada hari ke-19. Diri masa depan anda akan berterima kasih kerana menulisnya ketika masih segar.</p><p><strong>Format output adalah produk.</strong> Pengguna tidak peduli betapa pintarnya prompt anda. Mereka peduli tentang apa yang sampai ke peti masuk atau skrin mereka. Output AI sederhana dalam format yang bagus mengalahkan output AI yang bagus dalam format yang mengelirukan, setiap kali.</p><p><strong>Hantar dahulu, kukuhkan kemudian.</strong> Setiap alat yang saya cuba buat "sedia produksi" pada hari pertama akhirnya tertangguh atau tidak dihantar langsung. Alat yang saya hantar dengan kasar, dokumentasikan hadnya, dan tingkatkan kemudian secara konsisten berprestasi lebih baik dalam amalan.</p>',
+        's6': '<h2>Kesimpulan</h2><p>30 alat dalam 30 hari adalah meletihkan. Ada malam di mana saya mengesahkan kod pada pukul 11 malam, menulis dokumentasi pada tengah malam, dan mempersoalkan pilihan hidup saya pada pukul 1 pagi. Saya akan melakukannya lagi.</p><p>Nilainya bukan pada 30 alat itu. Ia adalah pada kesan kompaun daripada telah menghantar sebanyak itu kali. Menjelang hari ke-25, saya mempunyai perpustakaan peribadi corak, pendekatan yang gagal, dan penyelesaian yang diuji yang membuatkan setiap binaan seterusnya lebih cepat dan lebih baik.</p><p>Jika anda sedang belajar pembangunan AI, saya akan mengesyorkan versi cabaran ini — walaupun selama 7 hari. Kekangan adalah intipatinya. Kelajuan mendedahkan tahap kemahiran sebenar anda. Dan jurang antara apa yang anda fikir anda boleh bina dan apa yang sebenarnya anda bina adalah tempat pembelajaran sebenar berlaku.</p>',
+        'cta-title': 'Terfikir tentang projek AI untuk perniagaan anda?',
+        'cta-body': 'Saya telah menghabiskan 30+ hari membina alat AI untuk masalah perniagaan sebenar. Jika anda ada sesuatu dalam fikiran, saya ingin mendengarnya.',
+        'cta-btn': 'Jom Bincang',
+      },
+
+      zh: {
+        'nav-about': '关于', 'nav-projects': '项目', 'nav-content': '内容',
+        'nav-contact': '联系', 'nav-cta': '开始合作',
+        'back-link': '← 返回首页',
+        'article-tag': 'AI 策略',
+        'article-title': '30 天用 AI 解决 30 个问题',
+        'meta-date': '2025年5月',
+        'meta-read': '约8分钟',
+        's1': '<h2>挑战是什么？</h2><p>2025年初，我给自己设了一个挑战：连续30天，每天构建一个AI工具，每个工具解决一个真实的、有据可查的业务问题。不是演示，不是教程。而是真正可以交给企业主，第二天就能用的工具。</p><p>规则很简单。每个工具必须：<strong>解决一个具体问题</strong>，在一天内完成，并留有记录——我构建了什么，什么有效，什么没用。没有例外，没有延期。</p>',
+        's2': '<h2>为什么是30天？</h2><p>速度逼出清晰。当你只有八小时从问题到可用原型，你根本没时间过度设计。你直接切入核心——用户最需要做的那一件事——然后先把它做出来。</p><p>我也想测试自己的技术栈。在读了多年AI文章、构建了无数概念验证、参加了各种工作坊之后，我需要诚实地回答一个问题：<strong>我实际上能多快交付？</strong></p><p>30天后的答案：比我预期的快，但第3天和第18天之间的质量差距相当明显。而这个差距，才是最有趣的部分。</p>',
+        's3': '<h2>五个真正有效的项目</h2><p><strong>AI简历生成器</strong> — 最清晰的胜利。用户上传简历、粘贴职位描述，几秒内得到一份ATS友好的简历。成功的原因：问题定义非常清晰，反馈回路即时，输出有明确的质量基准（ATS分数）。现在已上线：resume.aibizmy.com。</p><p><strong>企业语音助手</strong> — 基于Retell AI构建，处理企业来电，对话自然流畅——预约、回答常见问题、智能转接人工。一位马来西亚中小企业主告诉我，上线两周内，60%的来电都由它处理了。</p><p><strong>AI提案生成器</strong> — 粘贴客户需求简介，输出一份结构清晰的专业提案。让我意外的是：格式比内容质量更重要。企业想要的是一看就对的东西。</p><p><strong>物流分析仪表板</strong> — 面向供应链场景，提取配送数据并用AI生成的摘要呈现延误规律。AI的真正价值在于洞察层——而不是图表本身。</p><p><strong>内容轮播图生成器</strong> — 输入一个主题，自动生成社交媒体轮播图内容。这个工具让我明白：AI内容工具的成败，取决于你对输出格式的约束有多严格。</p>',
+        's4': '<h2>失败的部分（真实记录）</h2><p>第9天是一堂关于需求蔓延的课。我试图构建一个可以在马来语和英语之间自由切换的双语语音助手。语音转文字层表现很差。我交付了一个半成品，记录了失败，然后继续前进。</p><p>第11到14天很艰难。我陷入了我现在称之为<strong>"AI万能"陷阱</strong>——用大语言模型去解决本可以用简单规则或查找表更快更好解决的问题。那段时间的工具技术上还行，但实际价值很弱。</p><p>移动端OCR是另一个失败。构建一个可以通过手机摄像头读取产品标签的清真扫描器，听起来很简单。但不同设备之间的图像质量差异让这件事真的很难。我交付了一个70%情况下有效的版本——对食品安全来说远远不够。</p>',
+        's5': '<h2>我学到了什么</h2><p><strong>约束造就更好的产品。</strong> 最好的工具来自最窄的问题定义。"为HR构建AI工具"什么都产生不了。"构建一个把要点列表转成职位描述的工具"产生的东西，企业第一天就能用。</p><p><strong>实时记录一切。</strong> 我在构建第7天工具时记的笔记，成了第19天工作流的基础。趁着思路还新鲜写下来，你未来的自己会感谢你。</p><p><strong>输出格式就是产品。</strong> 用户不在乎你的提示词多聪明。他们在乎的是落到他们收件箱或屏幕上的东西。一个普通的AI输出配上好的格式，胜过一个优秀的AI输出配上混乱的格式，永远如此。</p><p><strong>先交付，后打磨。</strong> 每一个我试图在第一天就做到"生产就绪"的工具，最终都延误了或根本没有交付。那些我粗糙交付、记录局限、之后持续改进的工具，实践中表现始终更好。</p>',
+        's6': '<h2>结语</h2><p>30天做30个工具是件累人的事。有些夜晚我在晚上11点提交代码，12点写文档，凌晨1点开始怀疑人生。我还会再做一次。</p><p>价值不在于那30个工具本身。而在于交付了那么多次之后产生的复利效应。到第25天，我已经积累了一个私人库——各种模式、失败的方法、经过验证的解决方案——让之后每一次构建都更快、更好。</p><p>如果你在学习AI开发，我推荐你做一个类似的挑战——哪怕只做7天。约束才是重点。速度会暴露你的真实能力水平。而你以为自己能做到的和实际做出来的之间的差距，就是真正学习发生的地方。</p>',
+        'cta-title': '在为您的业务考虑AI项目？',
+        'cta-body': '我花了30多天构建面向真实业务问题的AI工具。如果你有什么想法，我很想听听。',
+        'cta-btn': '开始合作',
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      if (!t) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = lang === 'my' ? 'ms' : lang === 'zh' ? 'zh' : 'en';
+      localStorage.setItem('lang', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      setLanguage(savedLang);
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLanguage(btn.getAttribute('data-lang'));
+          document.getElementById('mobileMenu').classList.remove('open');
+        });
+      });
+
+      document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('open');
+      });
+      document.getElementById('closeMenu').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('open');
+      });
+      document.querySelectorAll('.mob-link').forEach(l => {
+        l.addEventListener('click', () => {
+          document.getElementById('mobileMenu').classList.remove('open');
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
