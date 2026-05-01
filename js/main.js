@@ -27,6 +27,7 @@ const translations = {
     'projects-label': 'Projects',
     'projects-title': "What I've <span class=\"gradient-text\">Built</span>",
     'projects-sub': "A selection of AI tools and systems I've designed and shipped.",
+    'filter-all': 'All', 'filter-ai': 'AI Automation', 'filter-saas': 'SaaS / Web App',
     'p1-tag': 'Voice AI', 'p1-title': 'Voice Agent for Business',
     'p1-desc': 'AI-powered voice agent built on Retell AI and ElevenLabs. Handles inbound and outbound business calls with natural conversation flow and CRM integration.',
     'p1-status': 'Done',
@@ -119,6 +120,7 @@ const translations = {
     'projects-label': 'Projek',
     'projects-title': 'Apa yang Saya <span class="gradient-text">Bina</span>',
     'projects-sub': 'Pilihan alat dan sistem AI yang telah saya reka dan hantar.',
+    'filter-all': 'Semua', 'filter-ai': 'Automasi AI', 'filter-saas': 'SaaS / Aplikasi Web',
     'p1-tag': 'Suara AI', 'p1-title': 'Ejen Suara untuk Perniagaan',
     'p1-desc': 'Ejen suara berkuasa AI dibina di atas Retell AI dan ElevenLabs. Mengendalikan panggilan perniagaan masuk dan keluar dengan aliran perbualan semula jadi dan integrasi CRM.',
     'p1-status': 'Selesai',
@@ -211,6 +213,7 @@ const translations = {
     'projects-label': '项目',
     'projects-title': '我<span class="gradient-text">构建</span>了什么',
     'projects-sub': '我设计和交付的 AI 工具与系统精选。',
+    'filter-all': '全部', 'filter-ai': 'AI 自动化', 'filter-saas': 'SaaS / Web 应用',
     'p1-tag': '语音 AI', 'p1-title': '企业语音助手',
     'p1-desc': '基于 Retell AI 和 ElevenLabs 构建的 AI 语音助手——处理企业呼入/呼出电话，具有自然对话流程和 CRM 集成。',
     'p1-status': '已完成',
@@ -309,6 +312,19 @@ function setLanguage(lang) {
   localStorage.setItem('lang', lang);
 }
 
+// ---- PROJECT FILTER ----
+function filterProjects(category) {
+  document.querySelectorAll('.project-card').forEach(card => {
+    const match = category === 'all' || card.getAttribute('data-category') === category;
+    card.style.display = match ? '' : 'none';
+  });
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    const isActive = tab.getAttribute('data-filter') === category;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+}
+
 // Init language on load
 const savedLang = localStorage.getItem('lang') || 'en';
 document.addEventListener('DOMContentLoaded', () => {
@@ -327,6 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('heroBtnWork').addEventListener('click', () => scrollTo('projects'));
   document.getElementById('heroBtnContact').addEventListener('click', () => scrollTo('contact'));
   document.getElementById('blogCtaBtn').addEventListener('click', () => scrollTo('contact'));
+
+  // Filter tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => filterProjects(tab.getAttribute('data-filter')));
+  });
 });
 
 // ---- NAVBAR SCROLL ----
