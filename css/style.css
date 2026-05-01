@@ -767,47 +767,58 @@ body {
 
 /* ---- PROJECT CATEGORIES ---- */
 .projects-category {
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
+  padding-top: 2.5rem;
+  position: relative;
 }
-.projects-category:last-child {
-  margin-bottom: 0;
+.projects-category::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: 2px;
 }
+.projects-category:last-child { margin-bottom: 0; }
 .cat-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
-.cat-title {
+.cat-left {
   display: flex;
-  align-items: center;
-  gap: 0.9rem;
+  flex-direction: column;
+  gap: 0.35rem;
 }
-.cat-title h3 {
+.cat-name {
   font-family: var(--font-main);
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
   color: var(--text);
-  letter-spacing: -0.01em;
-}
-.cat-count {
-  display: inline-flex;
-  padding: 0.18rem 0.65rem;
-  background: rgba(124,58,237,0.14);
-  border: 1px solid rgba(124,58,237,0.28);
-  border-radius: 100px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--accent1-light);
-  letter-spacing: 0.04em;
 }
 .cat-desc {
-  font-size: 0.85rem;
+  font-size: 0.87rem;
   color: var(--text-muted);
-  text-align: right;
+  line-height: 1.5;
+}
+.cat-count {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.25);
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent1-light);
+  margin-top: 0.2rem;
 }
 
 /* ---- BLOG ---- */
@@ -1267,8 +1278,7 @@ footer::before {
 @media (max-width: 640px) {
   .nav-links, .nav-cta, .lang-switcher, .nav-app-btn { display: none; }
   .hamburger { display: block; }
-  .cat-header { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-  .cat-desc { text-align: left; }
+  .cat-name { font-size: 1.25rem; }
   .projects-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: span 1; }
   .blog-grid { grid-template-columns: 1fr; }
