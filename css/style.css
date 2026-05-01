@@ -781,16 +781,13 @@ body {
 }
 .projects-category:last-child { margin-bottom: 0; }
 .cat-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
   margin-bottom: 2.5rem;
 }
-.cat-left {
+.cat-title-row {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
 }
 .cat-name {
   font-family: var(--font-main);
@@ -805,12 +802,11 @@ body {
   line-height: 1.5;
 }
 .cat-count {
-  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background: rgba(124,58,237,0.12);
   border: 1px solid rgba(124,58,237,0.25);
@@ -818,7 +814,7 @@ body {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent1-light);
-  margin-top: 0.2rem;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 /* ---- BLOG ---- */

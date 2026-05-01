@@ -338,6 +338,28 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('blogCtaBtn').addEventListener('click', () => scrollTo('contact'));
 });
 
+// ---- COUNT-UP ANIMATION ----
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting || entry.target.dataset.counted) return;
+    entry.target.dataset.counted = 'true';
+    const target = parseInt(entry.target.dataset.count, 10);
+    let current = 0;
+    const duration = 700;
+    const interval = Math.max(30, Math.floor(duration / target));
+    const timer = setInterval(() => {
+      current++;
+      entry.target.textContent = current;
+      if (current >= target) clearInterval(timer);
+    }, interval);
+  });
+}, { threshold: 0.8 });
+
+document.querySelectorAll('.cat-count[data-count]').forEach(el => {
+  el.textContent = '0';
+  countObserver.observe(el);
+});
+
 // ---- NAVBAR SCROLL ----
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
