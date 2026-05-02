@@ -323,6 +323,54 @@
 
         </div>
       </div>
+
+      <!-- ML ENGINEERING -->
+      <div class="projects-category">
+        <div class="cat-header">
+          <div class="cat-title-row">
+            <h3 class="cat-name" data-i18n="filter-ml">ML Engineering</h3>
+            <span class="cat-count" data-count="3">3</span>
+          </div>
+          <p class="cat-desc" data-i18n="cat-ml-desc">Model fine-tuning, evaluation frameworks, and cloud ML deployment</p>
+        </div>
+        <div class="projects-grid">
+
+          <div class="project-card featured">
+            <div class="project-tag" data-i18n="p12-tag">ML Engineering</div>
+            <h3 data-i18n="p12-title">DistilBERT Fine-Tune Lab</h3>
+            <p data-i18n="p12-desc">Fine-tuned distilbert-base-uncased on SST-2 using PyTorch + HuggingFace Trainer API with LoRA (PEFT) — 82%+ validation accuracy. Integrated as a sentiment pre-screening layer in the insurance claims triage pipeline. Deployed to AWS SageMaker and GCP Vertex AI.</p>
+            <div class="project-tech">
+              <span>PyTorch</span><span>HuggingFace</span><span>LoRA / PEFT</span><span>FastAPI</span><span>Python</span>
+            </div>
+            <div class="project-status done" data-i18n="p12-status">Done</div>
+            <a href="https://github.com/ahnafthaqeef/claims-triage-agent" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-tag" data-i18n="p13-tag">ML Evaluation</div>
+            <h3 data-i18n="p13-title">Dual-Layer Eval Framework</h3>
+            <p data-i18n="p13-desc">Production evaluation framework: Ragas RAG quality scoring (faithfulness, answer relevancy, context precision) on a FAISS RAG pipeline + LangGraph claims-triage eval harness with 20-record golden dataset, routing accuracy gate, CRITICAL recall metric, and LangSmith experiment tracking.</p>
+            <div class="project-tech">
+              <span>Ragas</span><span>LangSmith</span><span>LangGraph</span><span>FAISS</span><span>Python</span>
+            </div>
+            <div class="project-status done" data-i18n="p13-status">Done</div>
+            <a href="https://github.com/ahnafthaqeef/claims-triage-agent" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-tag" data-i18n="p14-tag">Cloud ML</div>
+            <h3 data-i18n="p14-title">Cloud ML Deployment — SageMaker + Vertex AI</h3>
+            <p data-i18n="p14-desc">End-to-end ML deployment pipeline for a fine-tuned HuggingFace model: model packaging (tar.gz), S3 staging, AWS SageMaker HuggingFaceModel endpoint (ml.t2.medium), and GCP Vertex AI custom container via Docker + Google Artifact Registry. Cost-controlled teardown automation.</p>
+            <div class="project-tech">
+              <span>AWS SageMaker</span><span>GCP Vertex AI</span><span>Docker</span><span>boto3</span><span>Python</span>
+            </div>
+            <div class="project-status done" data-i18n="p14-status">Done</div>
+            <a href="https://github.com/ahnafthaqeef/claims-triage-agent" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
