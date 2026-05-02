@@ -576,3 +576,18 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
+// Launch App dropdown
+const navAppDropdown = document.getElementById('navAppDropdown');
+const navAppBtn = document.getElementById('navAppBtn');
+if (navAppBtn) {
+  navAppBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = navAppDropdown.classList.toggle('open');
+    navAppBtn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', () => {
+    navAppDropdown.classList.remove('open');
+    navAppBtn.setAttribute('aria-expanded', false);
+  });
+}

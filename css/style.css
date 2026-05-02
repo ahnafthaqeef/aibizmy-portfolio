@@ -219,6 +219,10 @@ body {
   transition: opacity 0.2s;
 }
 .nav-cta:hover { opacity: 0.85; }
+.nav-app-dropdown {
+  position: relative;
+  display: inline-block;
+}
 .nav-app-btn {
   padding: 0.5rem 1.2rem;
   background: transparent;
@@ -227,10 +231,42 @@ body {
   font-size: 0.85rem;
   border: 1px solid var(--accent1);
   border-radius: 6px;
-  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
   transition: background 0.2s, color 0.2s;
 }
 .nav-app-btn:hover { background: var(--accent1); color: #fff; }
+.nav-app-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.18s, transform 0.18s;
+  z-index: 200;
+}
+.nav-app-dropdown.open .nav-app-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.nav-app-menu li a {
+  display: block;
+  padding: 9px 16px;
+  color: var(--text);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-app-menu li a:hover { background: var(--accent1); color: #fff; }
 
 /* Lang Switcher */
 .lang-switcher {

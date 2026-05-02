@@ -8,7 +8,7 @@
   <meta name="og:title" content="Ahnaf Thaqeef — AI Builder" />
   <meta name="og:description" content="AI for Business in Malaysia. Intelligent tools, voice agents, and automation systems." />
   <meta name="og:url" content="https://aibizmy.com" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
@@ -28,7 +28,18 @@
       <button class="lang-btn" data-lang="my">BM</button>
       <button class="lang-btn" data-lang="zh">中文</button>
     </div>
-    <a href="https://resume.aibizmy.com" target="_blank" rel="noopener" class="nav-app-btn">Launch App ↗</a>
+    <div class="nav-app-dropdown" id="navAppDropdown">
+      <button class="nav-app-btn" id="navAppBtn" aria-haspopup="true" aria-expanded="false">Launch App ↗</button>
+      <ul class="nav-app-menu" role="menu">
+        <li><a href="https://resume.aibizmy.com"    target="_blank" rel="noopener" role="menuitem">AI Resume Builder</a></li>
+        <li><a href="https://habits.aibizmy.com"    target="_blank" rel="noopener" role="menuitem">Habit Tracker</a></li>
+        <li><a href="https://events.aibizmy.com"    target="_blank" rel="noopener" role="menuitem">AcaraHQ</a></li>
+        <li><a href="https://finai.aibizmy.com"     target="_blank" rel="noopener" role="menuitem">FinAI Intel</a></li>
+        <li><a href="https://pengajian.aibizmy.com" target="_blank" rel="noopener" role="menuitem">Rancangan Pengajian</a></li>
+        <li><a href="https://cx.aibizmy.com"        target="_blank" rel="noopener" role="menuitem">CX Intelligence Suite</a></li>
+        <li><a href="https://jahit.aibizmy.com"     target="_blank" rel="noopener" role="menuitem">Kedai Jahit Manager</a></li>
+      </ul>
+    </div>
     <button class="nav-cta" id="navCta" data-i18n="nav-cta">Let's Talk</button>
     <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
   </nav>
