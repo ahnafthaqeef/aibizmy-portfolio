@@ -121,14 +121,16 @@
           <p data-i18n="about-p2">From voice agents that handle customer calls to tools that write content, generate resumes, and automate workflows — I build end-to-end AI products with a focus on real-world outcomes.</p>
           <p data-i18n="about-p3">I work at the intersection of product thinking and technical execution. If there's a problem worth solving, I'll figure out the right AI approach for it.</p>
           <div class="tech-stack">
+            <span class="tag">PyTorch + Distributed Training (DDP)</span>
+            <span class="tag">Transformer Architecture (LoRA / PEFT)</span>
+            <span class="tag">HuggingFace Transformers + Hub</span>
+            <span class="tag">LLM Evaluation &amp; Alignment</span>
+            <span class="tag">AWS SageMaker + GCP Vertex AI</span>
             <span class="tag">n8n Automation</span>
             <span class="tag">RAG / Vector DB</span>
-            <span class="tag">Multi-LLM (Claude, Groq, OpenAI)</span>
+            <span class="tag">Multi-LLM (Claude, OpenAI)</span>
             <span class="tag">Next.js + TypeScript</span>
             <span class="tag">Python</span>
-            <span class="tag">AWS Bedrock</span>
-            <span class="tag">Supabase</span>
-            <span class="tag">Prompt Engineering</span>
           </div>
         </div>
         <div class="about-right">
@@ -340,16 +342,27 @@
         <div class="cat-header">
           <div class="cat-title-row">
             <h3 class="cat-name" data-i18n="filter-ml">ML Engineering</h3>
-            <span class="cat-count" data-count="3">3</span>
+            <span class="cat-count" data-count="4">4</span>
           </div>
           <p class="cat-desc" data-i18n="cat-ml-desc">Model fine-tuning, evaluation frameworks, and cloud ML deployment</p>
         </div>
         <div class="projects-grid">
 
           <div class="project-card featured">
+            <div class="project-tag" data-i18n="p15-tag">Distributed ML</div>
+            <h3 data-i18n="p15-title">Distributed Training — PyTorch DDP + Accelerate</h3>
+            <p data-i18n="p15-desc">Multi-process fine-tuning of DistilBERT transformer architecture using PyTorch DDP and HuggingFace Accelerate — identical script scales from 1 CPU to N-GPU clusters. Includes DistributedSampler, all_reduce distributed evaluation, and failure mode analysis. Model published to HuggingFace Hub with full model card.</p>
+            <div class="project-tech">
+              <span>PyTorch DDP</span><span>HuggingFace Accelerate</span><span>LoRA / PEFT</span><span>HuggingFace Hub</span><span>Python</span>
+            </div>
+            <div class="project-status done" data-i18n="p15-status">Done</div>
+            <a href="https://github.com/ahnafthaqeef/distributed-training-demo" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          </div>
+
+          <div class="project-card">
             <div class="project-tag" data-i18n="p12-tag">ML Engineering</div>
-            <h3 data-i18n="p12-title">DistilBERT Fine-Tune Lab</h3>
-            <p data-i18n="p12-desc">Fine-tuned distilbert-base-uncased on SST-2 using PyTorch + HuggingFace Trainer API with LoRA (PEFT) — 82%+ validation accuracy. Integrated as a sentiment pre-screening layer in the insurance claims triage pipeline. Deployed to AWS SageMaker and GCP Vertex AI.</p>
+            <h3 data-i18n="p12-title">Transformer Fine-Tuning Lab — DistilBERT + LoRA</h3>
+            <p data-i18n="p12-desc">End-to-end training pipeline for a DistilBERT transformer architecture (6 layers, 66M params). LoRA fine-tuning: 592K trainable / 67.6M total (0.88%). 82.45% accuracy, F1 0.8246 on SST-2 validation. Integrated as sentiment pre-screening layer in insurance claims triage pipeline.</p>
             <div class="project-tech">
               <span>PyTorch</span><span>HuggingFace</span><span>LoRA / PEFT</span><span>FastAPI</span><span>Python</span>
             </div>
@@ -359,8 +372,8 @@
 
           <div class="project-card">
             <div class="project-tag" data-i18n="p13-tag">ML Evaluation</div>
-            <h3 data-i18n="p13-title">Dual-Layer Eval Framework</h3>
-            <p data-i18n="p13-desc">Production evaluation framework: Ragas RAG quality scoring (faithfulness, answer relevancy, context precision) on a FAISS RAG pipeline + LangGraph claims-triage eval harness with 20-record golden dataset, routing accuracy gate, CRITICAL recall metric, and LangSmith experiment tracking.</p>
+            <h3 data-i18n="p13-title">Research-Grade LLM Evaluation Framework</h3>
+            <p data-i18n="p13-desc">Novel dual-layer evaluation framework for LLM alignment — 2,000+ real inferences evaluated. Ragas automated scoring + LangSmith human-preference labelling on 312 high-confidence failures. 5-category failure taxonomy (negation blindness 27.9%, sarcasm 19.6%, code-switching 17.3%) — directly informed retraining corrections.</p>
             <div class="project-tech">
               <span>Ragas</span><span>LangSmith</span><span>LangGraph</span><span>FAISS</span><span>Python</span>
             </div>
