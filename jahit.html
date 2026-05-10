@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kedai Jahit Manager — One Screen for Your Tailor Shop</title>
+  <meta name="description" content="Stop tracking orders on paper. A simple PWA that handles every kedai jahit order from received to picked-up — boss view, worker view, deadlines, deposits, photos. Beta access free." />
+  <meta name="og:title" content="Kedai Jahit Manager — Pengurusan tempahan kedai jahit" />
+  <meta name="og:description" content="One screen for orders, deadlines, workers, payments. Free during beta. Built for Malaysian kedai jahit." />
+  <meta name="og:url" content="https://aibizmy.com/jahit.html" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/chatbot.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Beta banner */
+    .jahit-beta {
+      background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(6,182,212,0.08));
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 999px;
+      padding: 5px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #4ade80;
+      margin-bottom: 20px;
+    }
+    .jahit-beta::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+    }
+
+    /* Bilingual section title */
+    .jahit-bm {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #67e8f9;
+      margin-bottom: 8px;
+    }
+
+    /* Pain point grid */
+    .jahit-pains {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 560px) { .jahit-pains { grid-template-columns: 1fr; } }
+    .jahit-pain {
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .jahit-pain-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .jahit-pain-text {
+      font-size: 13px;
+      color: #c4c4d8;
+      line-height: 1.55;
+    }
+    .jahit-pain-text strong { color: #eeeef8; font-weight: 600; }
+
+    /* Kanban demo */
+    .jahit-kanban {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (max-width: 720px) { .jahit-kanban { grid-template-columns: 1fr 1fr; } }
+    .jahit-col {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .jahit-col-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .jahit-col-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .jahit-col-count {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.07);
+      padding: 1px 6px;
+      border-radius: 999px;
+      color: #9494b8;
+    }
+    .jahit-col[data-stage="received"] .jahit-col-name { color: #93c5fd; }
+    .jahit-col[data-stage="in_progress"] .jahit-col-name { color: #fcd34d; }
+    .jahit-col[data-stage="ready"] .jahit-col-name { color: #86efac; }
+    .jahit-col[data-stage="picked_up"] .jahit-col-name { color: #c4b5fd; }
+    .jahit-card-mini {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+    .jahit-card-mini-name {
+      color: #eeeef8;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .jahit-card-mini-meta {
+      color: #777796;
+      font-size: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .jahit-tag-type {
+      background: rgba(124,58,237,0.15);
+      color: #a78bfa;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+    .jahit-due-soon { color: #fbbf24; font-weight: 600; }
+    .jahit-due-overdue { color: #f87171; font-weight: 600; }
+
+    /* Two-role view */
+    .jahit-roles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 720px) { .jahit-roles { grid-template-columns: 1fr; } }
+    .jahit-role {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .jahit-role-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .jahit-role.boss .jahit-role-tag {
+      background: rgba(124,58,237,0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(124,58,237,0.3);
+    }
+    .jahit-role.worker .jahit-role-tag {
+      background: rgba(6,182,212,0.12);
+      color: #67e8f9;
+      border: 1px solid rgba(6,182,212,0.3);
+    }
+    .jahit-role h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #eeeef8;
+      margin: 0 0 10px;
+    }
+    .jahit-role-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .jahit-role-list li {
+      padding: 8px 0 8px 22px;
+      position: relative;
+      font-size: 13px;
+      color: #c4c4d8;
+      line-height: 1.55;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .jahit-role-list li:last-child { border-bottom: none; }
+    .jahit-role-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+      font-size: 9px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* Pricing/access tiers */
+    .jahit-access {
+      background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(6,182,212,0.05));
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+    .jahit-access-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: #eeeef8;
+      line-height: 1;
+      margin: 12px 0 4px;
+    }
+    .jahit-access-price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9494b8;
+    }
+    .jahit-access-strike {
+      text-decoration: line-through;
+      text-decoration-color: rgba(239,68,68,0.6);
+      color: #777796;
+      font-size: 14px;
+    }
+    .jahit-access-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px auto 20px;
+      max-width: 360px;
+      text-align: left;
+    }
+    .jahit-access-list li {
+      padding: 6px 0 6px 24px;
+      position: relative;
+      font-size: 13px;
+      color: #c4c4d8;
+      line-height: 1.5;
+    }
+    .jahit-access-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.2);
+      color: #4ade80;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* WhatsApp CTA */
+    .jahit-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.32);
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .jahit-wa-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .jahit-wa-icon {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+
+    /* FAQ */
+    .jahit-faq { display: flex; flex-direction: column; gap: 8px; }
+    .jahit-faq details {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .jahit-faq summary {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #eeeef8;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .jahit-faq summary::-webkit-details-marker { display: none; }
+    .jahit-faq summary::after {
+      content: '+';
+      color: #67e8f9;
+      font-weight: 400;
+      font-size: 18px;
+    }
+    .jahit-faq details[open] summary::after { content: '–'; }
+    .jahit-faq details p {
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: #9494b8;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo" style="text-decoration:none;">AT</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#blog">Content</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/60174747960?text=Hi%20Ahnaf%2C%20saya%20nak%20cuba%20Kedai%20Jahit%20Manager" target="_blank" rel="noopener" class="nav-cta" style="text-decoration:none;background:#25d366;">WhatsApp Beta Access</a>
+  </nav>
+
+  <div class="cb-wrap">
+
+    <!-- HERO -->
+    <div class="cb-hero">
+      <a href="/" class="cb-back">&#8592; Back to Portfolio</a>
+      <span class="jahit-beta">Beta · 5 Tailor Shops Wanted</span>
+      <h1>Stop tracking orders<br/><span class="cb-gradient">on paper &amp; WhatsApp screenshots</span></h1>
+      <p>One screen for your kedai jahit. Every order — from <em>terima tempahan</em> to <em>siap diambil</em> — in one place. Boss sees everything. Pekerja sees only their work. Free during beta for the first five shops.</p>
+      <div class="cb-pills">
+        <span class="cb-pill">Pengurusan Tempahan</span>
+        <span class="cb-pill">Boss + Pekerja Roles</span>
+        <span class="cb-pill">Mobile-first PWA</span>
+        <span class="cb-pill">BM · EN · 中文</span>
+        <span class="cb-pill">No PC Needed</span>
+      </div>
+      <div class="cb-btns">
+        <a href="https://wa.me/60174747960?text=Hi%20Ahnaf%2C%20saya%20ada%20kedai%20jahit%20dan%20nak%20cuba%20Kedai%20Jahit%20Manager%20beta" target="_blank" rel="noopener" class="jahit-wa-btn">
+          <svg class="jahit-wa-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          WhatsApp Saya untuk Beta
+        </a>
+        <a href="#how" class="cb-btn-g">See How It Works</a>
+      </div>
+    </div>
+
+    <!-- PAIN POINTS -->
+    <div class="cb-section">
+      <div class="cb-label">The reality</div>
+      <h2 class="cb-h2">If you run a <span class="cb-gradient">kedai jahit</span>, you know this</h2>
+      <p class="cb-desc">Tailor shops have hundreds of orders a month. Most of it lives on paper, in WhatsApp, or in your kepala. Until something falls through the cracks.</p>
+      <div class="jahit-pains">
+        <div class="jahit-pain">
+          <div class="jahit-pain-icon">!</div>
+          <p class="jahit-pain-text"><strong>"Mana buku tempahan?"</strong> Customer datang ambil baju, you flip 6 pages of the buku to find their order.</p>
+        </div>
+        <div class="jahit-pain">
+          <div class="jahit-pain-icon">!</div>
+          <p class="jahit-pain-text"><strong>WhatsApp chaos.</strong> Customer hantar gambar baju in chat, then tanya status — you scroll 200 messages to find their order.</p>
+        </div>
+        <div class="jahit-pain">
+          <div class="jahit-pain-icon">!</div>
+          <p class="jahit-pain-text"><strong>Pekerja tak tahu apa nak buat.</strong> Each morning you brief 4 workers verbally. Half forget. Some skip an order.</p>
+        </div>
+        <div class="jahit-pain">
+          <div class="jahit-pain-icon">!</div>
+          <p class="jahit-pain-text"><strong>Deposit hilang dalam fikiran.</strong> Customer dah bayar deposit ke belum? Belum? Eh tapi siapa cakap dah?</p>
+        </div>
+        <div class="jahit-pain">
+          <div class="jahit-pain-icon">!</div>
+          <p class="jahit-pain-text"><strong>Raya peak season meltdown.</strong> 80 orders due in 3 weeks. You stress. The buku tempahan can't help you anymore.</p>
+        </div>
+        <div class="jahit-pain">
+          <div class="jahit-pain-icon">!</div>
+          <p class="jahit-pain-text"><strong>Customer call: "Dah siap ke?"</strong> You call the worker, who calls another worker, who finally says "tunggu kejap..."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- KANBAN PREVIEW -->
+    <div class="cb-section">
+      <div class="cb-label">Live order board</div>
+      <h2 class="cb-h2">Every order, <span class="cb-gradient">one screen</span></h2>
+      <p class="cb-desc">A kanban-style board organised by stage — Received, In Progress, Ready, Picked Up. Drag-and-drop to move orders forward. Whole shop sees what's happening, in real time.</p>
+      <div class="jahit-kanban">
+
+        <div class="jahit-col" data-stage="received">
+          <div class="jahit-col-head">
+            <span class="jahit-col-name">Received</span>
+            <span class="jahit-col-count">3</span>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">Puan Aisha</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Jahit Baru</span>
+              <span class="jahit-due-soon">Due 12 Mei</span>
+            </div>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">En. Ridwan</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Ubah Saiz</span>
+              <span>Due 15 Mei</span>
+            </div>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">Puan Mariam</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Pembaikan</span>
+              <span>Due 18 Mei</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="jahit-col" data-stage="in_progress">
+          <div class="jahit-col-head">
+            <span class="jahit-col-name">In Progress</span>
+            <span class="jahit-col-count">2</span>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">Cik Hannah</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Jahit Baru</span>
+              <span class="jahit-due-overdue">Lewat 1 hari</span>
+            </div>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">Puan Zarina</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Ubah Saiz</span>
+              <span>Due 11 Mei</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="jahit-col" data-stage="ready">
+          <div class="jahit-col-head">
+            <span class="jahit-col-name">Ready</span>
+            <span class="jahit-col-count">2</span>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">En. Faizal</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Jahit Baru</span>
+              <span style="color:#4ade80;">Siap ✓</span>
+            </div>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">Puan Siti</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Pembaikan</span>
+              <span style="color:#4ade80;">Siap ✓</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="jahit-col" data-stage="picked_up">
+          <div class="jahit-col-head">
+            <span class="jahit-col-name">Picked Up</span>
+            <span class="jahit-col-count">12</span>
+          </div>
+          <div class="jahit-card-mini">
+            <div class="jahit-card-mini-name">Puan Nurul</div>
+            <div class="jahit-card-mini-meta">
+              <span class="jahit-tag-type">Ubah Saiz</span>
+              <span>9 Mei</span>
+            </div>
+          </div>
+          <div class="jahit-card-mini" style="opacity:0.6;">
+            <div class="jahit-card-mini-name">+ 11 lagi</div>
+            <div class="jahit-card-mini-meta"><span style="color:#777796;">Bulan ini</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TWO ROLES -->
+    <div class="cb-section">
+      <div class="cb-label">Boss + Pekerja</div>
+      <h2 class="cb-h2">Two views, <span class="cb-gradient">one truth</span></h2>
+      <p class="cb-desc">Admin (boss) sees everything. Workers (pekerja) only see what they're assigned to. No more "saya tak tahu" excuses.</p>
+      <div class="jahit-roles">
+
+        <div class="jahit-role boss">
+          <span class="jahit-role-tag">Admin · Boss</span>
+          <h3>You see everything</h3>
+          <ul class="jahit-role-list">
+            <li>Every order, every stage, every deadline</li>
+            <li>Assign orders to specific tailors</li>
+            <li>See workload per worker — who's busy, who's free</li>
+            <li>Track deposits paid vs outstanding</li>
+            <li>Add new orders with customer photo + measurements</li>
+            <li>Performance stats: orders completed, on-time rate, top customers</li>
+          </ul>
+        </div>
+
+        <div class="jahit-role worker">
+          <span class="jahit-role-tag">Pekerja · Worker</span>
+          <h3>They see only their work</h3>
+          <ul class="jahit-role-list">
+            <li>Only orders assigned to them — no clutter</li>
+            <li>Update status: Received → In Progress → Ready</li>
+            <li>See deadline + customer phone for follow-ups</li>
+            <li>Tap to view order photo + description</li>
+            <li>Cannot see other workers' orders or the boss view</li>
+            <li>Mobile-first — works on any phone, no app install</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="cb-section" id="how">
+      <div class="cb-label">How it works</div>
+      <h2 class="cb-h2">From paper to <span class="cb-gradient">phone in 15 minutes</span></h2>
+      <p class="cb-desc">No installation, no training course, no IT person needed. Open in any phone browser, log in, start adding orders.</p>
+      <div class="cb-pipe">
+        <div class="cb-step">
+          <div class="cb-num">1</div>
+          <div class="cb-step-text">
+            <h4>Login on Phone</h4>
+            <p>Open jahit.aibizmy.com on your phone, log in with email or Google. Add to home screen — looks and feels like a real app.</p>
+          </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">2</div>
+          <div class="cb-step-text">
+            <h4>Add Your Workers</h4>
+            <p>Invite your tailors with their email. Each gets their own login. You stay admin, they're workers — different views, different access.</p>
+          </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">3</div>
+          <div class="cb-step-text">
+            <h4>Tambah Tempahan</h4>
+            <p>New customer? Snap a photo of the baju, fill name + phone + due date + price + work type. Assign to a worker. Done in 30 seconds.</p>
+          </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">4</div>
+          <div class="cb-step-text">
+            <h4>Track to Pickup</h4>
+            <p>Worker updates status as they progress. Customer asks "siap ke?" — you tap and check, no calling around. Order picked up? Mark complete.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCESS / PRICING -->
+    <div class="cb-section">
+      <div class="cb-label">Beta access</div>
+      <h2 class="cb-h2">First 5 tailor shops — <span class="cb-gradient">free forever</span></h2>
+      <p class="cb-desc">I'm building this with real tailor input. The first five kedai jahit who join the beta keep free access for life — your feedback shapes the product.</p>
+      <div class="jahit-access">
+        <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#4ade80;margin:0;">Beta Founder Access</p>
+        <div class="jahit-access-price">
+          FREE
+          <small><span class="jahit-access-strike">RM 49/month</span> for life</small>
+        </div>
+        <p style="font-size:13px;color:#9494b8;margin:0;">Limit 5 shops. Spots remaining: <strong style="color:#4ade80;">5 / 5</strong></p>
+        <ul class="jahit-access-list">
+          <li>Unlimited orders &amp; workers</li>
+          <li>Boss + pekerja role-based access</li>
+          <li>Photo uploads &amp; customer history</li>
+          <li>Mobile-first PWA — works on any phone</li>
+          <li>Trilingual UI — BM, EN, 中文</li>
+          <li>Direct line to me on WhatsApp for fixes &amp; requests</li>
+          <li>Free for life as a founding shop</li>
+        </ul>
+        <a href="https://wa.me/60174747960?text=Hi%20Ahnaf%2C%20saya%20ada%20kedai%20jahit%20dan%20nak%20claim%20Beta%20Founder%20Access" target="_blank" rel="noopener" class="jahit-wa-btn">
+          <svg class="jahit-wa-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Claim My Founder Spot
+        </a>
+        <p style="font-size:11px;color:#777796;margin:14px 0 0;">No credit card. No commitment. Just WhatsApp me.</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="cb-section">
+      <div class="cb-label">FAQ</div>
+      <h2 class="cb-h2">Soalan <span class="cb-gradient">lazim</span></h2>
+      <div class="jahit-faq">
+        <details>
+          <summary>Saya tak pandai computer / not techy. Boleh guna ke?</summary>
+          <p>Ya boleh. Kalau you boleh guna WhatsApp, you boleh guna ini. No installation. Open dalam phone browser, login, terus boleh add tempahan. I'll walk you through setup on a 15-minute video call.</p>
+        </details>
+        <details>
+          <summary>Pekerja saya tak ada smartphone canggih. Macam mana?</summary>
+          <p>Works on any phone with a browser — including older Android phones. The app is light. No 4GB RAM needed.</p>
+        </details>
+        <details>
+          <summary>Data customer saya selamat?</summary>
+          <p>Data stored on Supabase (the same backend used by thousands of apps worldwide), encrypted in transit and at rest. Each shop has separate data — your customers, your data, no one else can see it.</p>
+        </details>
+        <details>
+          <summary>Apa beza dengan buku tempahan biasa?</summary>
+          <p>Buku tempahan: handwritten, customer call you to ask status. Kedai Jahit Manager: customer phone open, you tap and answer in 5 seconds. Plus your workers know what to do without you briefing them every morning.</p>
+        </details>
+        <details>
+          <summary>Berapa lama nak setup?</summary>
+          <p>Saya bantu setup directly — typically 15–30 minutes for a small shop, including adding your first 10 active orders. Beta shops get a free 1-on-1 onboarding session with me.</p>
+        </details>
+        <details>
+          <summary>Lepas beta, kena bayar ke?</summary>
+          <p>First 5 founder shops — free forever. After beta, planned pricing is RM 49/month per shop with unlimited workers. But the first 5 keep free access for life as a thank-you for testing it with real-world feedback.</p>
+        </details>
+      </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div class="cb-cta">
+      <h2>Tinggal <span class="cb-gradient">5 spots</span> for founder shops</h2>
+      <p>WhatsApp me — bagi nama kedai you, lokasi, dan berapa orang pekerja. I'll set you up free, today.</p>
+      <div class="cb-cta-btns">
+        <a href="https://wa.me/60174747960?text=Hi%20Ahnaf%2C%20saya%20ada%20kedai%20jahit%20dan%20nak%20claim%20Beta%20Founder%20Access" target="_blank" rel="noopener" class="jahit-wa-btn">
+          <svg class="jahit-wa-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          WhatsApp +6017-474-7960
+        </a>
+        <a href="/" class="cb-btn-g">View All Projects</a>
+      </div>
+    </div>
+
+    <div class="cb-footer">&copy; 2026 Ahnaf Thaqeef. Built for Malaysian kedai jahit.</div>
+
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>
