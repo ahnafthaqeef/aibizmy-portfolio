@@ -1,0 +1,376 @@
+/* =============================================
+   KEDAI JAHIT MANAGER — landing page styles
+   Page-specific overrides + jahit-* components
+   ============================================= */
+
+/* Page-specific wider wrapper (overrides cb-wrap 800px default) */
+.cb-wrap { max-width: 1100px; padding-left: 2rem; padding-right: 2rem; }
+@media (max-width: 720px) { .cb-wrap { padding-left: 1.25rem; padding-right: 1.25rem; } }
+
+/* Constrain inner content blocks so they don't stretch full 1100px */
+.cb-pipe { max-width: 760px; margin-left: auto; margin-right: auto; }
+.cb-cta { padding: 72px 0; }
+.cb-cta p { max-width: 560px; }
+
+/* Hero text needs to stay readable */
+.cb-hero { padding: 72px 0 56px; }
+.cb-hero h1 { max-width: 820px; margin: 0 auto 18px; }
+.cb-hero p { max-width: 640px; }
+
+/* Section headers centered */
+.cb-section { padding: 64px 0; }
+.cb-section > .cb-label,
+.cb-section > .cb-h2,
+.cb-section > .cb-desc { max-width: 720px; margin-left: auto; margin-right: auto; }
+.cb-section > .cb-label,
+.cb-section > .cb-h2 { text-align: center; justify-content: center; }
+.cb-section > .cb-label { display: flex; }
+.cb-section > .cb-desc { text-align: center; margin-bottom: 36px; }
+
+/* ── Beta banner ───────────────────────────────────────── */
+.jahit-beta {
+  background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(6,182,212,0.08));
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 999px;
+  padding: 5px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4ade80;
+  margin-bottom: 20px;
+}
+.jahit-beta::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+}
+
+.jahit-bm {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #67e8f9;
+  margin-bottom: 8px;
+}
+
+/* ── Pain point grid ───────────────────────────────────── */
+.jahit-pains {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) { .jahit-pains { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .jahit-pains { grid-template-columns: 1fr; } }
+.jahit-pain {
+  background: rgba(239,68,68,0.05);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.jahit-pain-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(239,68,68,0.15);
+  color: #f87171;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+.jahit-pain-text {
+  font-size: 13px;
+  color: #c4c4d8;
+  line-height: 1.55;
+}
+.jahit-pain-text strong { color: #eeeef8; font-weight: 600; }
+
+/* ── Kanban demo ───────────────────────────────────────── */
+.jahit-kanban {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 900px) { .jahit-kanban { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .jahit-kanban { grid-template-columns: 1fr; } }
+.jahit-col {
+  background: #111124;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px;
+}
+.jahit-col-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.jahit-col-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.jahit-col-count {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.07);
+  padding: 1px 6px;
+  border-radius: 999px;
+  color: #9494b8;
+}
+.jahit-col[data-stage="received"] .jahit-col-name { color: #93c5fd; }
+.jahit-col[data-stage="in_progress"] .jahit-col-name { color: #fcd34d; }
+.jahit-col[data-stage="ready"] .jahit-col-name { color: #86efac; }
+.jahit-col[data-stage="picked_up"] .jahit-col-name { color: #c4b5fd; }
+.jahit-card-mini {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.jahit-card-mini-name {
+  color: #eeeef8;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.jahit-card-mini-meta {
+  color: #777796;
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jahit-tag-type {
+  background: rgba(124,58,237,0.15);
+  color: #a78bfa;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 600;
+}
+.jahit-due-soon { color: #fbbf24; font-weight: 600; }
+.jahit-due-overdue { color: #f87171; font-weight: 600; }
+
+/* ── Two-role view ─────────────────────────────────────── */
+.jahit-roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+@media (max-width: 720px) { .jahit-roles { grid-template-columns: 1fr; } }
+.jahit-role {
+  background: #111124;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 22px;
+}
+.jahit-role-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.jahit-role.boss .jahit-role-tag {
+  background: rgba(124,58,237,0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(124,58,237,0.3);
+}
+.jahit-role.worker .jahit-role-tag {
+  background: rgba(6,182,212,0.12);
+  color: #67e8f9;
+  border: 1px solid rgba(6,182,212,0.3);
+}
+.jahit-role h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #eeeef8;
+  margin: 0 0 10px;
+}
+.jahit-role-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.jahit-role-list li {
+  padding: 8px 0 8px 22px;
+  position: relative;
+  font-size: 13px;
+  color: #c4c4d8;
+  line-height: 1.55;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.jahit-role-list li:last-child { border-bottom: none; }
+.jahit-role-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(34,197,94,0.15);
+  color: #4ade80;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ── Pricing/access tiers ──────────────────────────────── */
+.jahit-access {
+  background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(6,182,212,0.05));
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 16px;
+  padding: 32px 28px;
+  text-align: center;
+  max-width: 540px;
+  margin: 0 auto;
+}
+.jahit-access-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: #eeeef8;
+  line-height: 1;
+  margin: 12px 0 4px;
+}
+.jahit-access-price small {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9494b8;
+}
+.jahit-access-strike {
+  text-decoration: line-through;
+  text-decoration-color: rgba(239,68,68,0.6);
+  color: #777796;
+  font-size: 14px;
+}
+.jahit-access-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px auto 20px;
+  max-width: 360px;
+  text-align: left;
+}
+.jahit-access-list li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  font-size: 13px;
+  color: #c4c4d8;
+  line-height: 1.5;
+}
+.jahit-access-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(34,197,94,0.2);
+  color: #4ade80;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ── WhatsApp CTA ──────────────────────────────────────── */
+.jahit-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(37,211,102,0.32);
+  transition: opacity 0.2s, transform 0.15s;
+}
+.jahit-wa-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+.jahit-wa-icon {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+/* ── FAQ ───────────────────────────────────────────────── */
+.jahit-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.jahit-faq details {
+  background: #111124;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.jahit-faq summary {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #eeeef8;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jahit-faq summary::-webkit-details-marker { display: none; }
+.jahit-faq summary::after {
+  content: '+';
+  color: #67e8f9;
+  font-weight: 400;
+  font-size: 18px;
+}
+.jahit-faq details[open] summary::after { content: '\2013'; }
+.jahit-faq details p {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #9494b8;
+  line-height: 1.7;
+}
