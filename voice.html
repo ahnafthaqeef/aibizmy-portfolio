@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Agents for Business — Ahnaf Thaqeef</title>
+  <meta name="description" content="AI voice agents that answer your phones, book appointments, and qualify leads — 24/7. Built on Retell AI and ElevenLabs. Bilingual (English & Bahasa Malaysia)." />
+  <meta name="og:title" content="Voice Agents for Business — Ahnaf Thaqeef" />
+  <meta name="og:description" content="AI voice agents that answer your phones 24/7. Bilingual. Live case studies for hair salons and childcare centres." />
+  <meta name="og:url" content="https://aibizmy.com/voice.html" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/chatbot.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Voice-page additions on top of cb-* classes */
+    .voice-cases {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 720px) { .voice-cases { grid-template-columns: 1fr; } }
+
+    .voice-case {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 22px;
+      transition: border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .voice-case:hover { border-color: rgba(124,58,237,0.35); }
+
+    .voice-case-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #67e8f9;
+      margin-bottom: 12px;
+      align-self: flex-start;
+      padding: 4px 10px;
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.22);
+      border-radius: 999px;
+    }
+
+    .voice-case h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #eeeef8;
+      margin: 0 0 8px;
+    }
+    .voice-case-sub {
+      font-size: 12px;
+      color: #67e8f9;
+      margin: 0 0 14px;
+      font-weight: 500;
+    }
+    .voice-case-body {
+      font-size: 13px;
+      color: #c4c4d8;
+      line-height: 1.7;
+      margin: 0 0 14px;
+    }
+    .voice-case-stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+    }
+    .voice-case-stat .n {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #eeeef8;
+      display: block;
+      line-height: 1;
+    }
+    .voice-case-stat .l {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9494b8;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .voice-case-flow {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .voice-case-flow li {
+      font-size: 12px;
+      color: #9494b8;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .voice-case-flow li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    }
+
+    .voice-audio-slot {
+      margin-top: auto;
+      padding: 14px;
+      background: rgba(124,58,237,0.06);
+      border: 1px dashed rgba(124,58,237,0.32);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .voice-audio-slot .l {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #c084fc;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .voice-audio-slot .d {
+      font-size: 12px;
+      color: #9494b8;
+    }
+    .voice-audio-slot.has-audio {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.28);
+      border-style: solid;
+    }
+    .voice-audio-slot.has-audio .l { color: #22c55e; }
+    .voice-audio-slot audio { width: 100%; margin-top: 6px; }
+
+    .voice-langs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .voice-lang-pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #c4c4d8;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    /* Call transcript bubble (variant of cb-chat) */
+    .voice-call-bar { background: linear-gradient(135deg, #7c3aed, #06b6d4); }
+    .voice-call-bar .cb-chat-bar-name { color: #fff; }
+    .voice-call-bar .cb-chat-bar-sub { color: rgba(255,255,255,0.85); }
+
+    .voice-fab-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 12px;
+      color: #9494b8;
+    }
+    .voice-fab-row .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.18);
+    }
+
+    /* Faq */
+    .voice-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .voice-faq details {
+      background: #111124;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .voice-faq summary {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #eeeef8;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .voice-faq summary::-webkit-details-marker { display: none; }
+    .voice-faq summary::after {
+      content: '+';
+      color: #67e8f9;
+      font-weight: 400;
+      font-size: 18px;
+    }
+    .voice-faq details[open] summary::after { content: '–'; }
+    .voice-faq details p {
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: #9494b8;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo" style="text-decoration:none;">AT</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#blog">Content</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta" style="text-decoration:none;">Book Consult</a>
+  </nav>
+
+  <div class="cb-wrap">
+
+    <!-- HERO -->
+    <div class="cb-hero">
+      <a href="/" class="cb-back">&#8592; Back to Portfolio</a>
+      <div class="cb-badge">Done-For-You Voice AI</div>
+      <h1>Voice agents that answer<br/><span class="cb-gradient">your business calls 24/7</span></h1>
+      <p>Stop missing calls after hours. AI voice agents trained on your business answer customer questions, book appointments, qualify leads, and escalate to your team only when needed. Bilingual — English &amp; Bahasa Malaysia.</p>
+      <div class="cb-pills">
+        <span class="cb-pill">Retell AI</span>
+        <span class="cb-pill">ElevenLabs</span>
+        <span class="cb-pill">Custom Voice Cloning</span>
+        <span class="cb-pill">CRM Integration</span>
+        <span class="cb-pill">Multilingual</span>
+      </div>
+      <div class="cb-btns">
+        <a href="mailto:hello@aibizmy.com?subject=Voice%20agent%20consult" class="cb-btn-p">Book a 15-min Consult &#8599;</a>
+        <a href="#cases" class="cb-btn-g">See Case Studies</a>
+      </div>
+    </div>
+
+    <!-- MOCK CALL DEMO -->
+    <div class="cb-chat">
+      <div class="cb-chat-bar voice-call-bar">
+        <div class="cb-chat-dot"></div>
+        <div>
+          <div class="cb-chat-bar-name">Incoming Call · Sarah's Salon Receptionist</div>
+          <div class="cb-chat-bar-sub">&#9679; Live · 0:12</div>
+        </div>
+      </div>
+      <div class="cb-chat-msgs">
+        <div class="cb-bot-msg"><strong style="color:#67e8f9;">Agent:</strong> Hi, you've reached Sarah's Salon. This is the AI receptionist. How can I help you today?</div>
+        <div class="cb-user-msg"><strong>Caller:</strong> Hi, I'd like to book a balayage with Sarah next week.</div>
+        <div class="cb-bot-msg"><strong style="color:#67e8f9;">Agent:</strong> Of course. Sarah's balayage starts from RM250 depending on length. She has Wednesday at 2pm or Thursday at 10am open next week. Which works for you?</div>
+        <div class="cb-user-msg"><strong>Caller:</strong> Wednesday 2pm please.</div>
+        <div class="cb-bot-msg"><strong style="color:#67e8f9;">Agent:</strong> Booked for Wednesday at 2pm with Sarah. Can I have your name and a contact number? I'll send you an SMS confirmation.</div>
+      </div>
+      <div class="voice-fab-row">
+        <span class="live-dot"></span>
+        <span>Sample call · runs end-to-end without human handoff</span>
+      </div>
+    </div>
+
+    <!-- CAPABILITIES -->
+    <div class="cb-section">
+      <div class="cb-label">What it does</div>
+      <h2 class="cb-h2">Six things, <span class="cb-gradient">no human required</span></h2>
+      <p class="cb-desc">Trained on your business knowledge base — pricing, hours, services, policies — and connected to your booking system.</p>
+      <div class="cb-caps">
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128241;</span>
+          <h3>Answer FAQs</h3>
+          <p>Hours, pricing, services, location, parking, policies. The agent gives accurate answers grounded in your knowledge base.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128197;</span>
+          <h3>Book Appointments</h3>
+          <p>Reads your calendar live, suggests open slots, books on the spot. SMS or email confirmation sent automatically.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128221;</span>
+          <h3>Qualify Leads</h3>
+          <p>Collects name, contact, intent, and slot data. Pushes a tagged lead into your CRM — no missed enquiries overnight.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128227;</span>
+          <h3>Bilingual</h3>
+          <p>Fluent in English and Bahasa Malaysia (and others on request). Switches mid-call based on caller language.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128104;&#8205;&#128187;</span>
+          <h3>Escalate When Needed</h3>
+          <p>Detects complex, sensitive, or out-of-scope calls and transfers to a real person — or schedules a callback.</p>
+        </div>
+        <div class="cb-cap">
+          <span class="cb-cap-icon">&#128202;</span>
+          <h3>Reports & Logs</h3>
+          <p>Every call transcribed and tagged by intent. Monthly summary of top questions, conversion rate, and missed opportunities.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDIES -->
+    <div class="cb-section" id="cases">
+      <div class="cb-label">Case studies</div>
+      <h2 class="cb-h2">Real businesses, <span class="cb-gradient">real knowledge bases</span></h2>
+      <p class="cb-desc">Two production-ready voice agents I've built — fully scripted, intent-mapped, and ready to deploy.</p>
+
+      <div class="voice-cases">
+
+        <!-- Case 1: Sarah's Salon -->
+        <div class="voice-case">
+          <span class="voice-case-tag">Hair &amp; Beauty</span>
+          <h3>Sarah's Salon — AI Receptionist</h3>
+          <p class="voice-case-sub">Brighton Heights, VIC · Boutique hair salon</p>
+          <div class="voice-langs">
+            <span class="voice-lang-pill">EN</span>
+          </div>
+          <p class="voice-case-body">A premium-but-approachable boutique salon. The AI receptionist handles bookings for cuts, colour services, and signature packages — recommends the right stylist (Sarah, Emily, or Mia) based on service type, and confirms appointments verbally before booking.</p>
+          <div class="voice-case-stats">
+            <div class="voice-case-stat">
+              <span class="n">3</span>
+              <span class="l">Stylists matched</span>
+            </div>
+            <div class="voice-case-stat">
+              <span class="n">12+</span>
+              <span class="l">Services priced</span>
+            </div>
+            <div class="voice-case-stat">
+              <span class="n">5</span>
+              <span class="l">Signature packages</span>
+            </div>
+          </div>
+          <ul class="voice-case-flow">
+            <li>Greets &amp; identifies caller intent (question / pricing / booking)</li>
+            <li>Recommends services and packages based on the request</li>
+            <li>Checks live calendar &amp; books with preferred stylist</li>
+            <li>Confirms verbally &amp; sends SMS confirmation</li>
+          </ul>
+          <div class="voice-audio-slot">
+            <span class="l">Sample call audio</span>
+            <span class="d">Coming soon — recording in progress</span>
+          </div>
+        </div>
+
+        <!-- Case 2: Damansara Children Academy -->
+        <div class="voice-case">
+          <span class="voice-case-tag">Childcare &amp; Education</span>
+          <h3>Damansara Children Academy</h3>
+          <p class="voice-case-sub">Kota Damansara, Selangor · Bilingual preschool &amp; childcare</p>
+          <div class="voice-langs">
+            <span class="voice-lang-pill">EN</span>
+            <span class="voice-lang-pill">BM</span>
+          </div>
+          <p class="voice-case-body">A licensed early-childhood centre catering to kids 18 months to 6 years. The agent answers fee enquiries, books tours, captures admissions leads, reports child absences — and escalates instantly for safeguarding or medical issues.</p>
+          <div class="voice-case-stats">
+            <div class="voice-case-stat">
+              <span class="n">7</span>
+              <span class="l">Intents mapped</span>
+            </div>
+            <div class="voice-case-stat">
+              <span class="n">90</span>
+              <span class="l">Children capacity</span>
+            </div>
+            <div class="voice-case-stat">
+              <span class="n">2</span>
+              <span class="l">Languages live</span>
+            </div>
+          </div>
+          <ul class="voice-case-flow">
+            <li>BookTour, EnrolmentEnquiry, FeeQuery, ReportAbsence intents</li>
+            <li>Collects parent name, child age, preferred date — pushes to CRM</li>
+            <li>Auto-sends SMS &amp; email confirmation with pre-visit checklist</li>
+            <li>Hard escalation for medical / safeguarding / complaints</li>
+          </ul>
+          <div class="voice-audio-slot">
+            <span class="l">Sample call audio</span>
+            <span class="d">Coming soon — recording in progress</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="cb-section">
+      <div class="cb-label">How it works</div>
+      <h2 class="cb-h2">From your business to a <span class="cb-gradient">live phone agent</span></h2>
+      <p class="cb-desc">A clean four-step build — typically live within 2 weeks of you handing over the knowledge base.</p>
+      <div class="cb-pipe">
+        <div class="cb-step">
+          <div class="cb-num">1</div>
+          <div class="cb-step-text">
+            <h4>Knowledge Base Capture</h4>
+            <p>I interview you and document everything an agent needs: services, pricing, hours, staff, policies, FAQs, edge cases. Output: a structured KB doc you own forever.</p>
+          </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">2</div>
+          <div class="cb-step-text">
+            <h4>Intent &amp; Flow Design</h4>
+            <p>Every common call is mapped to an intent (BookAppointment, FeeQuery, ReportAbsence, Complaint, etc.) with required slots and escalation triggers.</p>
+          </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">3</div>
+          <div class="cb-step-text">
+            <h4>Voice Agent Build</h4>
+            <p>Built on Retell AI with ElevenLabs voice (custom voice cloning available). Connected to your calendar, CRM, and SMS provider via webhooks.</p>
+          </div>
+        </div>
+        <div class="cb-step">
+          <div class="cb-num">4</div>
+          <div class="cb-step-text">
+            <h4>Go-Live &amp; Tuning</h4>
+            <p>Soft-launch on a forwarded number for 1–2 weeks. I review recorded calls weekly, refine the prompts, fix edge cases, and hand over the dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECH STACK -->
+    <div class="cb-section">
+      <div class="cb-label">Tech stack</div>
+      <h2 class="cb-h2">Built <span class="cb-gradient">with</span></h2>
+      <p class="cb-desc">Production-grade voice tooling — enterprise reliability without enterprise pricing.</p>
+      <div class="cb-stack">
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Voice Platform</div>
+          <div class="cb-stack-name">Retell AI</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Voice Synthesis</div>
+          <div class="cb-stack-name">ElevenLabs</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">LLM</div>
+          <div class="cb-stack-name">Claude API</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Phone Layer</div>
+          <div class="cb-stack-name">Twilio / Retell PSTN</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">CRM</div>
+          <div class="cb-stack-name">Webhook to your CRM</div>
+        </div>
+        <div class="cb-stack-card">
+          <div class="cb-stack-layer">Confirmations</div>
+          <div class="cb-stack-name">SMS &amp; Email</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="cb-section">
+      <div class="cb-label">FAQ</div>
+      <h2 class="cb-h2">Common <span class="cb-gradient">questions</span></h2>
+      <p class="cb-desc">Things business owners usually ask before signing up.</p>
+      <div class="voice-faq">
+        <details>
+          <summary>How much does this cost?</summary>
+          <p>Setup is project-based depending on intent count and integration complexity. Monthly running costs start from approximately RM150–400/month (Retell + ElevenLabs + phone number) plus per-minute usage. Quoted exactly after the discovery call.</p>
+        </details>
+        <details>
+          <summary>How long does it take to go live?</summary>
+          <p>Typically 2 weeks from the day you hand over the knowledge base. Faster if your business is straightforward and slower if there are complex CRM integrations or multilingual flows.</p>
+        </details>
+        <details>
+          <summary>Will it sound robotic?</summary>
+          <p>No. ElevenLabs voices are indistinguishable from real receptionists for most callers. Custom voice cloning is also available — train it on your own staff's voice for a fully branded experience.</p>
+        </details>
+        <details>
+          <summary>What happens when the agent doesn't know something?</summary>
+          <p>It says so explicitly and offers options: take a message, transfer to a human, or schedule a callback. It never hallucinates pricing or makes up policy answers.</p>
+        </details>
+        <details>
+          <summary>Does it work in Bahasa Malaysia?</summary>
+          <p>Yes — fully bilingual. Demonstrated in the Damansara Children Academy case study, with the agent switching between English and BM mid-call based on caller language.</p>
+        </details>
+        <details>
+          <summary>Can I review what the agent says before going live?</summary>
+          <p>Yes. Soft-launch is mandatory — 1–2 weeks on a forwarded number where you and I both review every call. Prompts get refined until you're comfortable, then we cut over the main number.</p>
+        </details>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cb-cta">
+      <h2>Ready to stop <span class="cb-gradient">missing calls?</span></h2>
+      <p>15 minutes is all I need to scope your business and quote the build. No commitment.</p>
+      <div class="cb-cta-btns">
+        <a href="mailto:hello@aibizmy.com?subject=Voice%20agent%20consult&body=Hi%20Ahnaf%2C%0A%0AI'd%20like%20to%20discuss%20a%20voice%20agent%20for%20my%20business.%0A%0ABusiness%3A%20%0AIndustry%3A%20%0ATypical%20call%20volume%3A%20%0AMain%20pain%20point%3A%20%0A%0AThanks." class="cb-btn-p">Book a 15-min Consult &#8599;</a>
+        <a href="/" class="cb-btn-g">View All Projects</a>
+      </div>
+    </div>
+
+    <div class="cb-footer">&copy; 2026 Ahnaf Thaqeef. All rights reserved.</div>
+
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>
